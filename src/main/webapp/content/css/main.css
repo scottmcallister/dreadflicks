@@ -4,6 +4,10 @@ body {
     color: #333;
 }
 
+h1, .lead {
+    text-align: center;
+}
+
 /* ==========================================================================
 Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
 ========================================================================== */
@@ -75,6 +79,10 @@ Logo styles
 .logo .logo-img {
     height: 45px;
     display: inline-block;
+}
+
+.brand-name {
+    line-height: 45px;
 }
 
 /* ==========================================================================
