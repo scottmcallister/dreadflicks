@@ -1,0 +1,11 @@
+apply plugin: 'com.moowork.node'
+
+task bower(type: NodeTask) {
+    description = "Installs dependencies using Bower"
+    script = file("${project.projectDir}/node_modules/bower/bin/bower")
+    args = ['install']
+}
+
+bower.dependsOn npm_install
+processResources.dependsOn bower
+bower.onlyIf { !project.hasProperty('skipBower') }
