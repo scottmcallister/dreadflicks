@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "director",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "country",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "criticScore",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "userScore",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "poster",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rtUrl",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "imdbRating",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "imdbKeywords",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170426022856",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "movie",
+    "pagination": "pager"
+}

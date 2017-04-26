@@ -43,6 +43,7 @@ public class CacheConfiguration {
             cm.createCache(com.mrscottmcallister.dreadflicks.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(com.mrscottmcallister.dreadflicks.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
             cm.createCache(com.mrscottmcallister.dreadflicks.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mrscottmcallister.dreadflicks.domain.Movie.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

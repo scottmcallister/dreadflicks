@@ -1,0 +1,86 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myMovieLabel">Create or edit a Movie</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.movie.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.movie.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                    ng-model="vm.movie.title"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_director">Director</label>
+            <input type="text" class="form-control" name="director" id="field_director"
+                    ng-model="vm.movie.director"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_year">Year</label>
+            <input type="number" class="form-control" name="year" id="field_year"
+                    ng-model="vm.movie.year"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_country">Country</label>
+            <input type="text" class="form-control" name="country" id="field_country"
+                    ng-model="vm.movie.country"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_criticScore">Critic Score</label>
+            <input type="number" class="form-control" name="criticScore" id="field_criticScore"
+                    ng-model="vm.movie.criticScore"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_userScore">User Score</label>
+            <input type="number" class="form-control" name="userScore" id="field_userScore"
+                    ng-model="vm.movie.userScore"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_poster">Poster</label>
+            <input type="text" class="form-control" name="poster" id="field_poster"
+                    ng-model="vm.movie.poster"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_rtUrl">Rt Url</label>
+            <input type="text" class="form-control" name="rtUrl" id="field_rtUrl"
+                    ng-model="vm.movie.rtUrl"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_imdbRating">Imdb Rating</label>
+            <input type="number" class="form-control" name="imdbRating" id="field_imdbRating"
+                    ng-model="vm.movie.imdbRating"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_imdbKeywords">Imdb Keywords</label>
+            <input type="text" class="form-control" name="imdbKeywords" id="field_imdbKeywords"
+                    ng-model="vm.movie.imdbKeywords"
+                    />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

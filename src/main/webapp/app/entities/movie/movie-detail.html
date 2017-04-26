@@ -1,0 +1,59 @@
+
+<div>
+    <h2><span>Movie</span> {{vm.movie.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Title</span></dt>
+        <dd>
+            <span>{{vm.movie.title}}</span>
+        </dd>
+        <dt><span>Director</span></dt>
+        <dd>
+            <span>{{vm.movie.director}}</span>
+        </dd>
+        <dt><span>Year</span></dt>
+        <dd>
+            <span>{{vm.movie.year}}</span>
+        </dd>
+        <dt><span>Country</span></dt>
+        <dd>
+            <span>{{vm.movie.country}}</span>
+        </dd>
+        <dt><span>Critic Score</span></dt>
+        <dd>
+            <span>{{vm.movie.criticScore}}</span>
+        </dd>
+        <dt><span>User Score</span></dt>
+        <dd>
+            <span>{{vm.movie.userScore}}</span>
+        </dd>
+        <dt><span>Poster</span></dt>
+        <dd>
+            <span>{{vm.movie.poster}}</span>
+        </dd>
+        <dt><span>Rt Url</span></dt>
+        <dd>
+            <span>{{vm.movie.rtUrl}}</span>
+        </dd>
+        <dt><span>Imdb Rating</span></dt>
+        <dd>
+            <span>{{vm.movie.imdbRating}}</span>
+        </dd>
+        <dt><span>Imdb Keywords</span></dt>
+        <dd>
+            <span>{{vm.movie.imdbKeywords}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="movie-detail.edit({id:vm.movie.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>
