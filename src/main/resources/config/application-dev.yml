@@ -47,6 +47,8 @@ spring:
                 path:
                   logs: target/elasticsearch/log
                   data: target/elasticsearch/data
+                http:
+                  enabled: true
     mail:
         host: localhost
         port: 25
