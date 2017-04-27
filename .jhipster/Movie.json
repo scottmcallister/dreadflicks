@@ -33,7 +33,6 @@
         {
             "fieldName": "rtUrl",
             "fieldType": "String",
-            "fieldValidateRules": []
         },
         {
             "fieldName": "imdbRating",
