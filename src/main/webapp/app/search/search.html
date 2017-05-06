@@ -6,8 +6,15 @@
         <button class="btn btn-default">Search</button>
     </div>
     <div>
-        <h1 ng-repeat="movie in vm.movies track by movie.id">
-            {{movie.title}}
-        </h1>
+        <div ng-repeat="movie in vm.movies track by movie.id" class="col-sm-4">
+            <div class="thumbnail">
+                <img class="card-img-top" src="{{movie.poster}}" alt="Card image cap">
+                <div class="caption">
+                    <h3 class="card-title">{{movie.title}} ({{movie.year}})</h3>
+                    <span>critics: {{movie.criticScore}}</span>
+                    <span>users: {{movie.userScore}}</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
