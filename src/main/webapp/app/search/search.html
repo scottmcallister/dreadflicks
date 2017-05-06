@@ -5,4 +5,9 @@
         </div>
         <button class="btn btn-default">Search</button>
     </div>
+    <div>
+        <h1 ng-repeat="movie in vm.movies track by movie.id">
+            {{movie.title}}
+        </h1>
+    </div>
 </div>
