@@ -84,11 +84,14 @@
             vm.transition();
         }
 
-        function getImage(title, year) {
-            var fixed_name = title.replace(/([^\s\w]|_)+/g, '')
+        function getImage(movie) {
+            if (movie.poster && movie.poster.indexOf('poster_default.gif') > -1) {
+                return '/content/images/image-404.png';
+            }
+            var fixed_name = movie.title.replace(/([^\s\w]|_)+/g, '')
                 .replace(/\s/g, '_')
                 .toLowerCase();
-            var url = '/content/images/' + fixed_name + year + '.png';
+            var url = '/content/images/' + fixed_name + movie.year + '.png';
             return url;
         }
 
