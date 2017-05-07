@@ -86,7 +86,7 @@
 
         function getImage(movie) {
             if (movie.poster && movie.poster.indexOf('poster_default.gif') > -1) {
-                return '/content/images/image-404.png';
+                return '/content/images/image-404-alt.png';
             }
             var fixed_name = movie.title.replace(/([^\s\w]|_)+/g, '')
                 .replace(/\s/g, '_')

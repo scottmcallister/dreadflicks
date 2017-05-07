@@ -8,8 +8,10 @@
     <div>
         <div ng-repeat="movie in vm.movies track by movie.id" class="col-sm-4">
             <div class="thumbnail">
-                <img class="card-img-top" src="{{vm.getImage(movie)}}"
-                    alt="{{movie.title}}" onerror="this.src='/content/images/image-404.png'">
+                <div class="movie-poster-wrapper">
+                    <img class="card-img-top" src="{{vm.getImage(movie)}}"
+                        alt="{{movie.title}}" onerror="this.src='/content/images/image-404-alt.png'">
+                </div>
                 <div class="caption">
                     <h3 class="card-title">{{movie.title}} ({{movie.year}})</h3>
                     <span>critics: {{movie.criticScore}}</span>
