@@ -21,6 +21,7 @@
         vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
+        vm.getImage = getImage;
 
         loadAll();
 
@@ -81,6 +82,14 @@
             vm.reverse = false;
             vm.currentSearch = searchQuery;
             vm.transition();
+        }
+
+        function getImage(title, year) {
+            var fixed_name = title.replace(/([^\s\w]|_)+/g, '')
+                .replace(/\s/g, '_')
+                .toLowerCase();
+            var url = '/content/images/' + fixed_name + year + '.png';
+            return url;
         }
 
         function clear() {
