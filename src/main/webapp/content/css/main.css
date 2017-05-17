@@ -378,3 +378,14 @@ Social Buttons
 }
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
+
+.movie-poster-wrapper {
+     max-width: 206px;
+     max-height: 305px;
+     margin: auto;
+}
+
+.card-img-top {
+     max-width: 100%;
+     max-height: 100%;
+}
