@@ -54,6 +54,9 @@ public class Movie implements Serializable {
     @Column(name = "imdb_keywords")
     private String imdbKeywords;
 
+    @Column(name = "image")
+    private String image;
+
     public Long getId() {
         return id;
     }
@@ -179,6 +182,14 @@ public class Movie implements Serializable {
         this.imdbRating = imdbRating;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getImdbKeywords() {
         return imdbKeywords;
     }
@@ -226,6 +237,7 @@ public class Movie implements Serializable {
             ", rtUrl='" + rtUrl + "'" +
             ", imdbRating='" + imdbRating + "'" +
             ", imdbKeywords='" + imdbKeywords + "'" +
+            ", image='" + image + "'" +
             '}';
     }
 }
