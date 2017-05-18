@@ -12,8 +12,8 @@
         var vm = this;
 
         vm.loadPage = loadPage;
-        vm.predicate = pagingParams.predicate;
-        vm.reverse = pagingParams.ascending;
+        vm.predicate = 'criticScore';
+        vm.reverse = pagingParams.descending;
         vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.clear = clear;
@@ -21,25 +21,16 @@
         vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
-        vm.getImage = getImage;
 
         loadAll();
 
         function loadAll () {
-            if (pagingParams.search) {
-                MovieSearch.query({
-                    query: pagingParams.search,
-                    page: pagingParams.page - 1,
-                    size: vm.itemsPerPage,
-                    sort: sort()
-                }, onSuccess, onError);
-            } else {
-                Movie.query({
-                    page: pagingParams.page - 1,
-                    size: vm.itemsPerPage,
-                    sort: sort()
-                }, onSuccess, onError);
-            }
+            MovieSearch.query({
+                query: '*',
+                page: pagingParams.page - 1,
+                size: vm.itemsPerPage,
+                sort: sort()
+            }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {
@@ -82,17 +73,6 @@
             vm.reverse = false;
             vm.currentSearch = searchQuery;
             vm.transition();
-        }
-
-        function getImage(movie) {
-            if (movie.poster && movie.poster.indexOf('poster_default.gif') > -1) {
-                return '/content/images/image-404-alt.png';
-            }
-            var fixed_name = movie.title.replace(/([^\s\w]|_)+/g, '')
-                .replace(/\s/g, '_')
-                .toLowerCase();
-            var url = '/content/images/' + fixed_name + movie.year + '.png';
-            return url;
         }
 
         function clear() {
