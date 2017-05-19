@@ -37,7 +37,7 @@ public class MovieResource {
     private final Logger log = LoggerFactory.getLogger(MovieResource.class);
 
     private static final String ENTITY_NAME = "movie";
-        
+
     private final MovieRepository movieRepository;
 
     private final MovieSearchRepository movieSearchRepository;
@@ -139,7 +139,7 @@ public class MovieResource {
      * SEARCH  /_search/movies?query=:query : search for the movie corresponding
      * to the query.
      *
-     * @param query the query of the movie search 
+     * @param query the query of the movie search
      * @param pageable the pagination information
      * @return the result of the search
      */
@@ -147,7 +147,10 @@ public class MovieResource {
     @Timed
     public ResponseEntity<List<Movie>> searchMovies(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Movies for query {}", query);
-        Page<Movie> page = movieSearchRepository.search(queryStringQuery(query), pageable);
+        Page<Movie> page = movieSearchRepository.search(
+            boolQuery()
+                .must(queryStringQuery(query))
+                .must(rangeQuery("criticScore").lt(100)), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/movies");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
