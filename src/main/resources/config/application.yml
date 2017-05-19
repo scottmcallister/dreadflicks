@@ -111,7 +111,7 @@ jhipster:
     social:
         redirect-after-sign-in: "/#/"
     ribbon:
-        display-on-active-profiles: dev
+        display-on-active-profiles:
 
 # ===================================================================
 # Application specific properties
