@@ -145,12 +145,12 @@ public class MovieResource {
      */
     @GetMapping("/_search/movies")
     @Timed
-    public ResponseEntity<List<Movie>> searchMovies(@RequestParam String query, @ApiParam Pageable pageable) {
+    public ResponseEntity<List<Movie>> searchMovies(@RequestParam String query, @RequestParam Integer criticMax, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Movies for query {}", query);
         Page<Movie> page = movieSearchRepository.search(
             boolQuery()
                 .must(queryStringQuery(query))
-                .must(rangeQuery("criticScore").lt(100)), pageable);
+                .must(rangeQuery("criticScore").lte(criticMax)), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/movies");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
