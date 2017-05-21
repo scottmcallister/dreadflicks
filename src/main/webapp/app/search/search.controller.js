@@ -21,6 +21,12 @@
         vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
+        vm.criticMax = 99;
+        vm.criticMin = 0;
+        vm.userMax = 99;
+        vm.userMin = 0;
+        vm.yearMax = 2017;
+        vm.yearMin = 1960;
 
         loadAll();
 
@@ -29,7 +35,13 @@
                 query: '*',
                 page: pagingParams.page - 1,
                 size: vm.itemsPerPage,
-                sort: sort()
+                sort: sort(),
+                criticMax: vm.criticMax,
+                criticMin: vm.criticMin,
+                userMax: vm.userMax,
+                userMin: vm.userMin,
+                yearMax: vm.yearMax,
+                yearMin: vm.yearMin
             }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];

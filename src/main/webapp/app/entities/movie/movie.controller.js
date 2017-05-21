@@ -21,12 +21,6 @@
         vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
-        vm.criticMax = 99;
-        vm.criticMin = 0;
-        vm.userMax = 99;
-        vm.userMin = 0;
-        vm.yearMax = 2017;
-        vm.yearMin = 1960;
 
         loadAll();
 
