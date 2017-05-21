@@ -100,7 +100,8 @@ public class MovieResource {
                 .must(queryStringQuery(query))
                 .must(rangeQuery("criticScore").lte(criticMax).gte(criticMin))
                 .must(rangeQuery("userScore").lte(userMax).gte(userMin))
-                .must(rangeQuery("year").lte(userMax).gte(userMin)), pageable);
+                .must(rangeQuery("year").lte(yearMax).gte(yearMin))
+            , pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/movies");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
