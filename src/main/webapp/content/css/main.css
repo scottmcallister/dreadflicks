@@ -398,3 +398,13 @@ Social Buttons
 .thumbnail-wrapper {
     height: 530px;
 }
+
+.filter-panel {
+    background: #272B30;
+    border-radius: 5px;
+    border: 1px solid #0c0d0e;
+}
+
+h3 {
+    text-align: center;
+}

@@ -6,17 +6,22 @@
         <button class="btn btn-default">Search</button>
     </div>
     <div class="row">
-        <div ng-repeat="movie in vm.movies track by movie.id" class="col-sm-4">
-            <div class="thumbnail-wrapper">
-                <div class="thumbnail">
-                    <div class="movie-poster-wrapper">
-                        <img class="card-img-top" ng-src="{{movie.image}}"
-                            alt="{{movie.title}}" onerror="this.src='/content/images/image-404-alt.png'">
-                    </div>
-                    <div class="caption">
-                        <h3 class="card-title">{{movie.title}} ({{movie.year}})</h3>
-                        <span>critics: {{movie.criticScore}}</span>
-                        <span>users: {{movie.userScore}}</span>
+        <div class="col-sm-3 filter-panel">
+            <h3>Filters</h3>
+        </div>
+        <div class="col-sm-9">
+            <div ng-repeat="movie in vm.movies track by movie.id" class="col-md-4 col-sm-6">
+                <div class="thumbnail-wrapper">
+                    <div class="thumbnail">
+                        <div class="movie-poster-wrapper">
+                            <img class="card-img-top" ng-src="{{movie.image}}"
+                                 alt="{{movie.title}}" onerror="this.src='/content/images/image-404-alt.png'">
+                        </div>
+                        <div class="caption">
+                            <h3 class="card-title">{{movie.title}} ({{movie.year}})</h3>
+                            <span>critics: {{movie.criticScore}}</span>
+                            <span>users: {{movie.userScore}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
