@@ -40,6 +40,11 @@
         "angular": "1.5.8"
       }
     },
+    "angularjs-slider": {
+      "dependencies": {
+        "angular": "1.5.8"
+      }
+    },
     "bootstrap": {
       "main": [
         "dist/css/bootstrap.css"

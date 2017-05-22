@@ -27,6 +27,16 @@
         vm.userMin = 0;
         vm.yearMax = 2017;
         vm.yearMin = 1960;
+        vm.rtSlider = {
+            floor: 0,
+            ceil: 100,
+            step: 1
+        };
+        vm.yearSlider = {
+            floor: 1960,
+            ceil: 2017,
+            step: 1
+        };
 
         loadAll();
 
