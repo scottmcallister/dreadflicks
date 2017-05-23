@@ -27,10 +27,31 @@
         vm.userMin = 0;
         vm.yearMax = 2017;
         vm.yearMin = 1960;
-        vm.rtSlider = {
+        vm.criticSlider = {
             floor: 0,
             ceil: 100,
-            step: 1
+            step: 1,
+            onEnd: function(id, lowValue, highValue, pointerType){
+                if(pointerType === 'min') {
+                    vm.criticMin = lowValue;
+                } else {
+                    vm.criticMax = highValue;
+                }
+
+            }
+        };
+        vm.userSlider = {
+            floor: 0,
+            ceil: 100,
+            step: 1,
+            onEnd: function(id, lowValue, highValue, pointerType){
+                if(pointerType === 'min') {
+                    vm.userMin = lowValue;
+                } else {
+                    vm.userMax = highValue;
+                }
+
+            }
         };
         vm.yearSlider = {
             floor: 1960,
