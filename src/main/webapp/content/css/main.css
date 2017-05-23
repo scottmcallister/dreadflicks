@@ -408,3 +408,27 @@ Social Buttons
 h3 {
     text-align: center;
 }
+
+.rzslider .rz-pointer {
+    top: -5px;
+    z-index: 3;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    background-color: #cc0b0b;
+    border-radius: 16px;
+}
+
+.rzslider .rz-pointer:after {
+    background: none !important;
+    width: 0px;
+    height: 0px;
+}
+
+.rzslider .rz-bar {
+    background: #666;
+}
+
+.rzslider .rz-selection {
+    background: #cc0b0b;
+}
