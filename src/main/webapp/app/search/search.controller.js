@@ -19,7 +19,7 @@
         vm.clear = clear;
         vm.search = search;
         vm.loadAll = loadAll;
-        vm.searchQuery = pagingParams.search;
+        vm.searchQuery = "*";
         vm.currentSearch = pagingParams.search;
         vm.criticMax = 99;
         vm.criticMin = 0;
@@ -27,6 +27,7 @@
         vm.userMin = 0;
         vm.yearMax = 2017;
         vm.yearMin = 1960;
+        vm.inputText = '';
         vm.criticSlider = {
             floor: 0,
             ceil: 100,
@@ -61,17 +62,28 @@
                 if(pointerType === 'min') {
                     vm.yearMin = lowValue;
                 } else {
-                    vm.yearMax = highValue;
+                    vm.yearsMax = highValue;
                 }
                 loadAll();
             }
+        };
+        vm.doSearch = function() {
+            if (vm.inputText === "") {
+                console.log('blank');
+                vm.searchQuery = "*";
+            } else {
+                console.log('not blank');
+                vm.searchQuery = vm.inputText;
+            }
+            loadAll();
+            vm.inputText = "";
         };
 
         loadAll();
 
         function loadAll () {
             MovieSearch.query({
-                query: '*',
+                query: vm.searchQuery,
                 page: pagingParams.page - 1,
                 size: vm.itemsPerPage,
                 sort: sort(),
