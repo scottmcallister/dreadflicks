@@ -37,7 +37,7 @@
                 } else {
                     vm.criticMax = highValue;
                 }
-
+                loadAll();
             }
         };
         vm.userSlider = {
@@ -50,13 +50,21 @@
                 } else {
                     vm.userMax = highValue;
                 }
-
+                loadAll();
             }
         };
         vm.yearSlider = {
             floor: 1960,
             ceil: 2017,
-            step: 1
+            step: 1,
+            onEnd: function(id, lowValue, highValue, pointerType){
+                if(pointerType === 'min') {
+                    vm.yearMin = lowValue;
+                } else {
+                    vm.yearMax = highValue;
+                }
+                loadAll();
+            }
         };
 
         loadAll();
