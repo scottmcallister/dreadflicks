@@ -69,15 +69,32 @@
         };
         vm.doSearch = function() {
             if (vm.inputText === "") {
-                console.log('blank');
                 vm.searchQuery = "*";
             } else {
-                console.log('not blank');
                 vm.searchQuery = vm.inputText;
             }
             loadAll();
             vm.inputText = "";
         };
+
+        vm.sortList = [
+            {
+                value: "title",
+                name: "Title"
+            },
+            {
+                value: "criticScore",
+                name: "Critic Score"
+            },
+            {
+                value: "userScore",
+                name: "User Score"
+            },
+            {
+                value: "year",
+                name: "Year"
+            },
+        ];
 
         loadAll();
 
