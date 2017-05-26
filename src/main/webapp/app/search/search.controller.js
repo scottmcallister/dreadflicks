@@ -96,6 +96,10 @@
             },
         ];
 
+        vm.changeSort = function() {
+            vm.doSearch();
+        };
+
         loadAll();
 
         function loadAll () {

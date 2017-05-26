@@ -2,11 +2,15 @@
     <div class="row">
         <form class="form-group" ng-submit="vm.doSearch()">
             <div class="col-xs-10 col-md-6 col-md-offset-3">
-                <input type="text" ng-model="vm.inputText" class="form-control" placeholder="Search by keyword">
-                <select class="form-control">
-                    <option ng-repeat="sortOrder in vm.sortList" value="{{sortOrder.value}}">{{sortOrder.name}}</option>
-                    <option value="" disabled selected hidden>Sort Order</option>
-                </select>
+                <div class="col-xs-8">
+                    <input type="text" ng-model="vm.inputText" class="form-control" placeholder="Search by keyword">
+                </div>
+                <div class="col-xs-4">
+                    <select ng-model="vm.predicate" class="form-control" ng-change="vm.changeSort()">
+                        <option ng-repeat="sortOrder in vm.sortList" value="{{sortOrder.value}}">{{sortOrder.name}}</option>
+                        <option value="" disabled selected hidden>Sort Order</option>
+                    </select>
+                </div>
             </div>
             <input type="submit" class="btn btn-default" value="Search">
         </form>
