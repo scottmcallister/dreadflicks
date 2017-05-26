@@ -13,7 +13,7 @@
 
         vm.loadPage = loadPage;
         vm.predicate = 'criticScore';
-        vm.reverse = pagingParams.descending;
+        vm.direction = 'desc';
         vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.clear = clear;
@@ -96,10 +96,6 @@
             },
         ];
 
-        vm.changeSort = function() {
-            vm.doSearch();
-        };
-
         loadAll();
 
         function loadAll () {
@@ -116,7 +112,7 @@
                 yearMin: vm.yearMin
             }, onSuccess, onError);
             function sort() {
-                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
+                var result = [vm.predicate + ',' + vm.direction];
                 if (vm.predicate !== 'id') {
                     result.push('id');
                 }
