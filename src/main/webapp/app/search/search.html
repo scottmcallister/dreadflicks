@@ -9,7 +9,17 @@
     </div>
     <div class="row">
         <div class="col-sm-3 filter-panel">
-            <h3>Filters</h3>
+            <h4>Sorting</h4>
+            <select ng-model="vm.predicate" class="form-control" ng-change="vm.doSearch()">
+                        <option ng-repeat="sortOrder in vm.sortList" value="{{sortOrder.value}}">{{sortOrder.name}}</option>
+                        <option value="" disabled selected hidden>Sort Order</option>
+                    </select>
+            <label>
+                <input type="radio" ng-model="vm.direction" value="asc" ng-change="vm.doSearch()"> Ascending
+            </label>
+            <label>
+                <input type="radio" ng-model="vm.direction" value="desc" ng-change="vm.doSearch()"> Descending
+            </label>
             <h4>Critic Score</h4>
             <rzslider rz-slider-model="vm.criticMin"
                       rz-slider-high="vm.criticMax"
@@ -22,17 +32,6 @@
             <rzslider rz-slider-model="vm.yearMin"
                       rz-slider-high="vm.yearMax"
                       rz-slider-options="vm.yearSlider"></rzslider>
-            <h4>Sorting</h4>
-            <select ng-model="vm.predicate" class="form-control" ng-change="vm.doSearch()">
-                        <option ng-repeat="sortOrder in vm.sortList" value="{{sortOrder.value}}">{{sortOrder.name}}</option>
-                        <option value="" disabled selected hidden>Sort Order</option>
-                    </select>
-            <label>
-                <input type="radio" ng-model="vm.direction" value="asc" ng-change="vm.doSearch()"> Ascending
-            </label>
-            <label>
-                <input type="radio" ng-model="vm.direction" value="desc" ng-change="vm.doSearch()"> Descending
-            </label>
         </div>
         <div class="col-sm-9">
             <div ng-repeat="movie in vm.movies track by movie.id" class="col-md-4 col-sm-6">
@@ -50,6 +49,10 @@
                     </div>
                 </div>
             </div>
+            <div class="search-pagination">
+                <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+            </div>
+            
         </div>
     </div>
 </div>
