@@ -32,6 +32,12 @@
             <rzslider rz-slider-model="vm.yearMin"
                       rz-slider-high="vm.yearMax"
                       rz-slider-options="vm.yearSlider"></rzslider>
+            <h4>Archetype</h4>
+            <div class="types">
+                <label ng-repeat="type in vm.types">
+                    <input type="checkbox" checklist-model="vm.types" checklist-value="type"> {{type}}
+                </label>
+            </div>
         </div>
         <div class="col-sm-9">
             <div ng-repeat="movie in vm.movies track by movie.id" class="col-md-4 col-sm-6">

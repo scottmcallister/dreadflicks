@@ -405,6 +405,10 @@ Social Buttons
     border: 1px solid #0c0d0e;
 }
 
+.filter-panel .types label{
+    width: 100%;
+}
+
 h3 {
     text-align: center;
 }

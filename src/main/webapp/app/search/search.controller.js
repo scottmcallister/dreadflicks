@@ -96,6 +96,39 @@
             },
         ];
 
+        vm.types = [
+            'found footage',
+            'demon',
+            'possession',
+            'exorcism',
+            'haunting',
+            'slasher',
+            'zombie',
+            'infection',
+            'vampire',
+            'clown',
+            'puppet',
+            'ghost',
+            'home invasion',
+            'alien',
+            'alien abduction',
+            'gore',
+            'werewolf',
+            'haunted house',
+            'shark',
+            'witchcraft',
+            'monster',
+            'doll',
+            'devil',
+            'graveyard',
+            'satanism',
+            'isolation',
+            'hotel',
+            'based on novel',
+            'snake',
+            'paranormal'
+        ];
+
         loadAll();
 
         function loadAll () {
