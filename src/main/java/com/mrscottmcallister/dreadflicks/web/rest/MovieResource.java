@@ -20,8 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -93,14 +92,17 @@ public class MovieResource {
                                                     @RequestParam Integer userMin,
                                                     @RequestParam Integer yearMax,
                                                     @RequestParam Integer yearMin,
+                                                    @RequestParam String types,
                                                     @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Movies for query {}", query);
+        ArrayList<String> typeList = new ArrayList<>(Arrays.asList(types.split(",")));
         Page<Movie> page = movieSearchRepository.search(
             boolQuery()
                 .must(queryStringQuery(query))
                 .must(rangeQuery("criticScore").lte(criticMax).gte(criticMin))
                 .must(rangeQuery("userScore").lte(userMax).gte(userMin))
                 .must(rangeQuery("year").lte(yearMax).gte(yearMin))
+                .must(termsQuery("imdbKeywords", typeList))
             , pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/movies");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
