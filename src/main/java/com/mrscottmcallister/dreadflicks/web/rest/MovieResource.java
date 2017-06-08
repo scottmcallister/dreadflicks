@@ -103,7 +103,8 @@ public class MovieResource {
                                                     @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Movies for query {}", query);
         Page<Movie> page;
-        if (types == null) {
+        if (types.length() < 1) {
+            log.debug("no type set");
             page = movieSearchRepository.search(
                 boolQuery()
                     .must(queryStringQuery(query))
@@ -112,6 +113,7 @@ public class MovieResource {
                     .must(rangeQuery("year").lte(yearMax).gte(yearMin))
                 , pageable);
         } else {
+            log.debug("type param set to {}", types);
             ArrayList<String> typeList = new ArrayList<>(Arrays.asList(types.split(",")));
             page = movieSearchRepository.search(
                 boolQuery()
