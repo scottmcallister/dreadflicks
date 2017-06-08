@@ -79,7 +79,14 @@ public class MovieResource {
      * SEARCH  /_search/movies?query=:query : search for the movie corresponding
      * to the query.
      *
-     * @param query the query of the movie search
+     * @param query the search keywords of the movie search
+     * @param criticMax the maximum critic score of the search
+     * @param criticMin the minimum critic score of the search
+     * @param userMax the maximum user score of the search
+     * @param userMin the minimum user score of the search
+     * @param yearMax the maximum year of the movie
+     * @param yearMin the minimum year of the movie
+     * @param types a comma delimited list of movie types (Zombies, Found Footage, etc.)
      * @param pageable the pagination information
      * @return the result of the search
      */
@@ -96,6 +103,7 @@ public class MovieResource {
                                                     @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Movies for query {}", query);
         ArrayList<String> typeList = new ArrayList<>(Arrays.asList(types.split(",")));
+
         Page<Movie> page = movieSearchRepository.search(
             boolQuery()
                 .must(queryStringQuery(query))

@@ -142,7 +142,8 @@
                 userMax: vm.userMax,
                 userMin: vm.userMin,
                 yearMax: vm.yearMax,
-                yearMin: vm.yearMin
+                yearMin: vm.yearMin,
+                types: ''
             }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + vm.direction];
