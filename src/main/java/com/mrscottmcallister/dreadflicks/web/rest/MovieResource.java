@@ -99,19 +99,29 @@ public class MovieResource {
                                                     @RequestParam Integer userMin,
                                                     @RequestParam Integer yearMax,
                                                     @RequestParam Integer yearMin,
-                                                    @RequestParam String types,
+                                                    @RequestParam(required = false) String types,
                                                     @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Movies for query {}", query);
-        ArrayList<String> typeList = new ArrayList<>(Arrays.asList(types.split(",")));
-
-        Page<Movie> page = movieSearchRepository.search(
-            boolQuery()
-                .must(queryStringQuery(query))
-                .must(rangeQuery("criticScore").lte(criticMax).gte(criticMin))
-                .must(rangeQuery("userScore").lte(userMax).gte(userMin))
-                .must(rangeQuery("year").lte(yearMax).gte(yearMin))
-                .must(termsQuery("imdbKeywords", typeList))
-            , pageable);
+        Page<Movie> page;
+        if (types == null) {
+            page = movieSearchRepository.search(
+                boolQuery()
+                    .must(queryStringQuery(query))
+                    .must(rangeQuery("criticScore").lte(criticMax).gte(criticMin))
+                    .must(rangeQuery("userScore").lte(userMax).gte(userMin))
+                    .must(rangeQuery("year").lte(yearMax).gte(yearMin))
+                , pageable);
+        } else {
+            ArrayList<String> typeList = new ArrayList<>(Arrays.asList(types.split(",")));
+            page = movieSearchRepository.search(
+                boolQuery()
+                    .must(queryStringQuery(query))
+                    .must(rangeQuery("criticScore").lte(criticMax).gte(criticMin))
+                    .must(rangeQuery("userScore").lte(userMax).gte(userMin))
+                    .must(rangeQuery("year").lte(yearMax).gte(yearMin))
+                    .must(termsQuery("imdbKeywords", typeList))
+                , pageable);
+        }
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/movies");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
