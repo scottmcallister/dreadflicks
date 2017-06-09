@@ -128,6 +128,10 @@
             'witchcraft',
             'zombie'
         ];
+        vm.selectedTypes = [];
+        vm.checkType = function(type) {
+            alert(type);
+        };
 
         loadAll();
 
@@ -143,7 +147,7 @@
                 userMin: vm.userMin,
                 yearMax: vm.yearMax,
                 yearMin: vm.yearMin,
-                types: ''
+                types: vm.selectedTypes.join(),
             }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + vm.direction];

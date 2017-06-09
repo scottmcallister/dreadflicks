@@ -35,7 +35,7 @@
             <h4>Archetype</h4>
             <div class="types">
                 <label ng-repeat="type in vm.types">
-                    <input type="checkbox" checklist-model="vm.types" checklist-value="type"> {{type}}
+                    <input type="checkbox" checklist-change="vm.doSearch()" checklist-model="vm.selectedTypes" checklist-value="type"> {{type}}
                 </label>
             </div>
         </div>
