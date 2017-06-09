@@ -2,7 +2,7 @@
     <div class="row">
         <form class="form-group" ng-submit="vm.doSearch()">
             <div class="col-xs-10 col-md-6 col-md-offset-3">
-                <input type="text" ng-model="vm.inputText" class="form-control" placeholder="Search by keyword">
+                <input type="text" ng-model="vm.inputText" class="form-control" placeholder="Search by title or keyword">
             </div>
             <input type="submit" class="btn btn-default" value="Search">
         </form>
@@ -32,7 +32,7 @@
             <rzslider rz-slider-model="vm.yearMin"
                       rz-slider-high="vm.yearMax"
                       rz-slider-options="vm.yearSlider"></rzslider>
-            <h4>Archetype</h4>
+            <h4>Keywords</h4>
             <div class="types">
                 <label ng-repeat="type in vm.types">
                     <input type="checkbox" checklist-change="vm.doSearch()" checklist-model="vm.selectedTypes" checklist-value="type"> {{type}}
