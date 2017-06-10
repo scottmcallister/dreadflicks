@@ -1,0 +1,40 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="scottmcallister (generated)" id="1497135795806-1">
+        <createTable tableName="movie_list">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="movie_listPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="scottmcallister (generated)" id="1497135795806-2">
+        <createTable tableName="movie_list_movie">
+            <column name="movie_lists_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="movies_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="scottmcallister (generated)" id="1497135795806-3">
+        <addPrimaryKey columnNames="movie_lists_id, movies_id" tableName="movie_list_movie"/>
+    </changeSet>
+    <changeSet author="scottmcallister (generated)" id="1497135795806-4">
+        <addForeignKeyConstraint baseColumnNames="movies_id" baseTableName="movie_list_movie" constraintName="FKe5ljlih9w36wtwdto0w5h8y8k" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="movie"/>
+    </changeSet>
+    <changeSet author="scottmcallister (generated)" id="1497135795806-5">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="movie_list" constraintName="FKor4kdlpq5egpyctc3582f888x" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="scottmcallister (generated)" id="1497135795806-6">
+        <addForeignKeyConstraint baseColumnNames="movie_lists_id" baseTableName="movie_list_movie" constraintName="FKpecp4ey6om7hpehsu048u0vpm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="movie_list"/>
+    </changeSet>
+    <changeSet author="scottmcallister (generated)" id="1497135795806-7">
+        <dropUniqueConstraint constraintName="jhi_social_user_connection_user_id_provider_id_provider_use_key" tableName="jhi_social_user_connection"/>
+    </changeSet>
+    <changeSet author="scottmcallister (generated)" id="1497135795806-8">
+        <dropUniqueConstraint constraintName="jhi_social_user_connection_user_id_provider_id_rank_key" tableName="jhi_social_user_connection"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,33 @@
+
+<div>
+    <h2><span>Movie List</span> {{vm.movieList.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{vm.movieList.name}}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{vm.movieList.user.login}}
+        </dd>
+        <dt><span>Movie</span></dt>
+        <dd>
+            <span ng-repeat="movie in vm.movieList.movies">
+                <a ui-sref="movie-detail({id: movie.id})">{{movie.title}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="movie-list-detail.edit({id:vm.movieList.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>
