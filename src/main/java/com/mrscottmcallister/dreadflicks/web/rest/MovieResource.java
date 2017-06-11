@@ -101,7 +101,7 @@ public class MovieResource {
                                                     @RequestParam Integer userMin,
                                                     @RequestParam Integer yearMax,
                                                     @RequestParam Integer yearMin,
-                                                    @RequestParam(required = false) String types,
+                                                    @RequestParam String types,
                                                     @ApiParam Pageable pageable) throws UnsupportedEncodingException {
         log.debug("REST request to search for a page of Movies for query {}", query);
         Page<Movie> page;
