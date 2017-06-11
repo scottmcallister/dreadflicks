@@ -18,8 +18,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -100,31 +102,37 @@ public class MovieResource {
                                                     @RequestParam Integer yearMax,
                                                     @RequestParam Integer yearMin,
                                                     @RequestParam(required = false) String types,
-                                                    @ApiParam Pageable pageable) {
+                                                    @ApiParam Pageable pageable) throws UnsupportedEncodingException {
         log.debug("REST request to search for a page of Movies for query {}", query);
         Page<Movie> page;
+        String utf8 = java.nio.charset.StandardCharsets.UTF_8.toString();
         if (types.length() < 1) {
             log.debug("no type set");
             page = movieSearchRepository.search(
                 boolQuery()
-                    .must(queryStringQuery(query))
+                    .must(queryStringQuery(URLDecoder.decode(query, utf8)))
                     .must(rangeQuery("criticScore").lte(criticMax).gte(criticMin))
                     .must(rangeQuery("userScore").lte(userMax).gte(userMin))
                     .must(rangeQuery("year").lte(yearMax).gte(yearMin))
                 , pageable);
         } else {
-            log.debug("type param set to {}", types);
-            ArrayList<String> typeList = new ArrayList<>(Arrays.asList(types.split(",")));
-            page = movieSearchRepository.search(
-                boolQuery()
-                    .must(queryStringQuery(query))
-                    .must(rangeQuery("criticScore").lte(criticMax).gte(criticMin))
-                    .must(rangeQuery("userScore").lte(userMax).gte(userMin))
-                    .must(rangeQuery("year").lte(yearMax).gte(yearMin))
-                    .must(termsQuery("imdbKeywords", typeList))
-                , pageable);
+            try{
+                String typeListDecoded = URLDecoder.decode(types, utf8);
+                ArrayList<String> typeList = new ArrayList<>(Arrays.asList(typeListDecoded.split(",|\\s")));
+                page = movieSearchRepository.search(
+                    boolQuery()
+                        .must(queryStringQuery(URLDecoder.decode(query, utf8)))
+                        .must(rangeQuery("criticScore").lte(criticMax).gte(criticMin))
+                        .must(rangeQuery("userScore").lte(userMax).gte(userMin))
+                        .must(rangeQuery("year").lte(yearMax).gte(yearMin))
+                        .must(termsQuery("imdbKeywords", typeList))
+                    , pageable);
+            } catch(UnsupportedEncodingException e) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
         }
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/movies");
+        HttpHeaders headers
+            = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/movies");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
