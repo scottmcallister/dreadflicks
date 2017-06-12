@@ -101,6 +101,8 @@ public class MovieResource {
                                                     @RequestParam Integer userMin,
                                                     @RequestParam Integer yearMax,
                                                     @RequestParam Integer yearMin,
+                                                    @RequestParam Double imdbMax,
+                                                    @RequestParam Double imdbMin,
                                                     @RequestParam String types,
                                                     @ApiParam Pageable pageable) throws UnsupportedEncodingException {
         log.debug("REST request to search for a page of Movies for query {}", query);
@@ -114,6 +116,7 @@ public class MovieResource {
                     .must(rangeQuery("criticScore").lte(criticMax).gte(criticMin))
                     .must(rangeQuery("userScore").lte(userMax).gte(userMin))
                     .must(rangeQuery("year").lte(yearMax).gte(yearMin))
+                    .must(rangeQuery("imdbRating").lte(imdbMax).gte(imdbMin))
                 , pageable);
         } else {
             try{
@@ -125,6 +128,7 @@ public class MovieResource {
                         .must(rangeQuery("criticScore").lte(criticMax).gte(criticMin))
                         .must(rangeQuery("userScore").lte(userMax).gte(userMin))
                         .must(rangeQuery("year").lte(yearMax).gte(yearMin))
+                        .must(rangeQuery("imdbRating").lte(imdbMax).gte(imdbMin))
                         .must(termsQuery("imdbKeywords", typeList))
                     , pageable);
             } catch(UnsupportedEncodingException e) {

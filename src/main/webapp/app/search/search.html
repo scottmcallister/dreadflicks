@@ -20,6 +20,10 @@
             <label>
                 <input type="radio" ng-model="vm.direction" value="desc" ng-change="vm.doSearch()"> Descending
             </label>
+            <h4>IMDB Rating</h4>
+            <rzslider rz-slider-model="vm.imdbMin"
+                      rz-slider-high="vm.imdbMax"
+                      rz-slider-options="vm.imdbSlider"></rzslider>
             <h4>Critic Score</h4>
             <rzslider rz-slider-model="vm.criticMin"
                       rz-slider-high="vm.criticMax"
@@ -51,6 +55,7 @@
                             <h3 class="card-title">{{movie.title}} ({{movie.year}})</h3>
                             <span>critics: {{movie.criticScore}}</span>
                             <span>users: {{movie.userScore}}</span>
+                            <span>imdb: {{movie.imdbRating}}</span>
                         </div>
                     </div>
                 </div>

@@ -27,7 +27,24 @@
         vm.userMin = 0;
         vm.yearMax = 2017;
         vm.yearMin = 1960;
+        vm.imdbMax = 10;
+        vm.imdbMin = 0;
         vm.inputText = '';
+        vm.imdbSlider = {
+            floor: 0,
+            ceil: 10,
+            step: 0.1,
+            precision: 1,
+            enforceStep: false,
+            onEnd: function(id, lowValue, highValue, pointerType){
+                if(pointerType === 'min') {
+                    vm.imdbMin = lowValue;
+                } else {
+                    vm.imdbMax = highValue;
+                }
+                loadAll();
+            }
+        };
         vm.criticSlider = {
             floor: 0,
             ceil: 100,
@@ -147,6 +164,8 @@
                 userMin: vm.userMin,
                 yearMax: vm.yearMax,
                 yearMin: vm.yearMin,
+                imdbMax: vm.imdbMax,
+                imdbMin: vm.imdbMin,
                 types: vm.selectedTypes.join(),
             }, onSuccess, onError);
             function sort() {
