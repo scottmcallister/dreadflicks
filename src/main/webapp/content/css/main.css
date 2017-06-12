@@ -436,3 +436,29 @@ h3 {
 .rzslider .rz-selection {
     background: #cc0b0b;
 }
+
+.feature-image {
+    width: auto;
+    height: 100px;
+    background: #666;
+    border-radius: 3px;
+}
+
+.feature-image span {
+    line-height: 100px;
+    vertical-align: middle;
+    color: #DDD;
+}
+
+.feature-image .glyphicon {
+    font-size: 50px;
+}
+
+.hero-feature {
+    margin: auto;
+    max-width: 550px;
+}
+
+.hero-spacer {
+    background: #272B30;
+}
