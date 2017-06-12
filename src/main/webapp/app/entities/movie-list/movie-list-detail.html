@@ -1,8 +1,37 @@
 
 <div>
-    <h2><span>Movie List</span> {{vm.movieList.id}}</h2>
+    <h2 class="text-center">{{vm.movieList.name}}</h2>
     <hr>
-    <jhi-alert-error></jhi-alert-error>
+    <div ng-repeat="movie in vm.movieList.movies track by movie.id" class="col-md-4 col-sm-6">
+        <div class="thumbnail-wrapper">
+            <div class="thumbnail">
+                <div class="movie-poster-wrapper">
+                    <img class="card-img-top" ng-src="{{movie.image}}"
+                            alt="{{movie.title}}" onerror="this.src='/content/images/image-404-alt.png'">
+                </div>
+                <div class="caption">
+                    <h3 class="card-title">{{movie.title}} ({{movie.year}})</h3>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>IMDB Rating:</td>
+                                <td>{{movie.imdbRating.toFixed(1)}}</td>
+                            </tr>
+                            <tr>
+                                <td>RT Critic Score:</td>
+                                <td>{{movie.criticScore}}%</td>
+                            </tr>
+                            <tr>
+                                <td>RT User Score:</td>
+                                <td>{{movie.userScore}}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
         <dt><span>Name</span></dt>
         <dd>
@@ -18,7 +47,7 @@
                 <a ui-sref="movie-detail({id: movie.id})">{{movie.title}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
-    </dl>
+    </dl>-->
 
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
