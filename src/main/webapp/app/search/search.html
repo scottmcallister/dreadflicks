@@ -20,22 +20,22 @@
             <label>
                 <input type="radio" ng-model="vm.direction" value="desc" ng-change="vm.doSearch()"> Descending
             </label>
-            <h4>IMDB Rating</h4>
-            <rzslider rz-slider-model="vm.imdbMin"
-                      rz-slider-high="vm.imdbMax"
-                      rz-slider-options="vm.imdbSlider"></rzslider>
-            <h4>Critic Score</h4>
-            <rzslider rz-slider-model="vm.criticMin"
-                      rz-slider-high="vm.criticMax"
-                      rz-slider-options="vm.criticSlider"></rzslider>
-            <h4>User Score</h4>
-            <rzslider rz-slider-model="vm.userMin"
-                      rz-slider-high="vm.userMax"
-                      rz-slider-options="vm.userSlider"></rzslider>
             <h4>Year</h4>
             <rzslider rz-slider-model="vm.yearMin"
                       rz-slider-high="vm.yearMax"
                       rz-slider-options="vm.yearSlider"></rzslider>
+            <h4>IMDB Rating</h4>
+            <rzslider rz-slider-model="vm.imdbMin"
+                      rz-slider-high="vm.imdbMax"
+                      rz-slider-options="vm.imdbSlider"></rzslider>
+            <h4>Rotten Tomatoes Critic</h4>
+            <rzslider rz-slider-model="vm.criticMin"
+                      rz-slider-high="vm.criticMax"
+                      rz-slider-options="vm.criticSlider"></rzslider>
+            <h4>Rotten Tomatoes User</h4>
+            <rzslider rz-slider-model="vm.userMin"
+                      rz-slider-high="vm.userMax"
+                      rz-slider-options="vm.userSlider"></rzslider>
             <h4>Keywords</h4>
             <div class="types">
                 <label ng-repeat="type in vm.types">
@@ -53,9 +53,22 @@
                         </div>
                         <div class="caption">
                             <h3 class="card-title">{{movie.title}} ({{movie.year}})</h3>
-                            <span>critics: {{movie.criticScore}}</span>
-                            <span>users: {{movie.userScore}}</span>
-                            <span>imdb: {{movie.imdbRating}}</span>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>IMDB Rating:</td>
+                                        <td>{{movie.imdbRating.toFixed(1)}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RT Critic Score:</td>
+                                        <td>{{movie.criticScore}}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RT User Score:</td>
+                                        <td>{{movie.userScore}}%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

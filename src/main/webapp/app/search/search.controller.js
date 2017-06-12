@@ -111,6 +111,10 @@
                 value: "year",
                 name: "Year"
             },
+            {
+                value: "imdbRating",
+                name: "IMDB Rating",
+            },
         ];
 
         vm.types = [

@@ -399,6 +399,20 @@ Social Buttons
     height: 530px;
 }
 
+.thumbnail table{
+    width: 100%;
+    background: transparent;
+}
+
+.thumbnail td:nth-child(1){
+    width: 70%;
+}
+
+.thumbnail td:nth-child(2){
+    width: 30%;
+    text-align: right;
+}
+
 .filter-panel {
     background: #272B30;
     border-radius: 5px;
