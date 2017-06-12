@@ -1,37 +1,21 @@
 <div>
-    <h2>Movie Lists</h2>
+    <h2 class="text-center">Movie Lists</h2>
     <jhi-alert></jhi-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="movie-list.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs-down" >
-                        Create new Movie List
-                    </span>
-                </button>
-            </div>
-            <div class="col-xs-8 no-padding-right">
-                <form name="searchForm" class="form-inline">
-                    <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="Query">
-                        <span  class="input-group-btn width-min" >
-                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
-                            <button class="btn btn-info" ng-click="vm.clear()">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                        </span>
-                    </div>
-                </form>
-            </div>
+    <div class="container-fluid lists-content">
+        <div class="col-sm-4" ng-repeat="movieList in vm.movieLists track by movieList.id">
+            <button class="list-link" ui-sref="movie-list-detail({id:movieList.id})" >
+                {{movieList.name}}
+            </button>
+        </div>
+        <div class="col-sm-4">
+            <button class="list-link new-list" ui-sref="movie-list.new" >
+                <span class="glyphicon glyphicon-plus"></span> Create New List
+            </button>
         </div>
     </div>
     <br/>
-    <div class="table-responsive">
+
+    <!--<div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
@@ -73,9 +57,6 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div class="text-center">
-        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
-    </div>
+    </div> -->
     <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
 </div>

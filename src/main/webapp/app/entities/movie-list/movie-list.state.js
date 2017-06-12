@@ -99,6 +99,30 @@
                 });
             }]
         })
+        .state('movie-list-detail.delete', {
+            parent: 'movie-list-detail',
+            url: '/detail/delete',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/movie-list/movie-list-delete-dialog.html',
+                    controller: 'MovieListDeleteController',
+                    controllerAs: 'vm',
+                    size: 'md',
+                    resolve: {
+                        entity: ['MovieList', function(MovieList) {
+                            return MovieList.get({id : $stateParams.id}).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('movie-list', null, { reload: 'movie-list' });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
+        })
         .state('movie-list.new', {
             parent: 'movie-list',
             url: '/new',
