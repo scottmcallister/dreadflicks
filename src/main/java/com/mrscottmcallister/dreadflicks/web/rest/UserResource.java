@@ -6,6 +6,7 @@ import com.mrscottmcallister.dreadflicks.domain.User;
 import com.mrscottmcallister.dreadflicks.repository.UserRepository;
 import com.mrscottmcallister.dreadflicks.repository.search.UserSearchRepository;
 import com.mrscottmcallister.dreadflicks.security.AuthoritiesConstants;
+import com.mrscottmcallister.dreadflicks.security.SecurityUtils;
 import com.mrscottmcallister.dreadflicks.service.MailService;
 import com.mrscottmcallister.dreadflicks.service.UserService;
 import com.mrscottmcallister.dreadflicks.service.dto.UserDTO;
@@ -206,5 +207,20 @@ public class UserResource {
         return StreamSupport
             .stream(userSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
+    }
+
+    /**
+     * GET  /users/current : get the current user.
+     *
+     * @return the ResponseEntity with status 200 (OK) and with body the current user
+     */
+    @GetMapping("/users/current")
+    @Timed
+    public ResponseEntity<UserDTO> getCurrentUser() {
+        log.debug("REST request to get current user");
+        String currentUserLogin = SecurityUtils.getCurrentUserLogin();
+        return ResponseUtil.wrapOrNotFound(
+            userService.getUserWithAuthoritiesByLogin(currentUserLogin)
+                .map(UserDTO::new));
     }
 }
