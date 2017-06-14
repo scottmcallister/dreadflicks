@@ -13,8 +13,11 @@
         vm.movieList = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.users = User.query();
-        vm.movies = Movie.query();
+        vm.account = null;
+
+        Principal.identity().then(function(account) {
+            vm.account = account;
+        });
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -29,6 +32,8 @@
             if (vm.movieList.id !== null) {
                 MovieList.update(vm.movieList, onSaveSuccess, onSaveError);
             } else {
+                vm.movieList.user = vm.account;
+                vm.movieList.movies = [];
                 MovieList.save(vm.movieList, onSaveSuccess, onSaveError);
             }
         }
