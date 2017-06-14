@@ -61,11 +61,11 @@
                                     </tr>
                                     <tr>
                                         <td>RT Critic Score:</td>
-                                        <td>{{movie.criticScore}}%</td>
+                                        <td>{{movie.criticScore || 0}}{{movie.criticScore >= 0 ? '%' : 'NA'}}</td>
                                     </tr>
                                     <tr>
                                         <td>RT User Score:</td>
-                                        <td>{{movie.userScore}}%</td>
+                                        <td>{{movie.userScore || 0}}{{movie.userScore >= 0 ? '%' : 'NA'}}</td>
                                     </tr>
                                 </tbody>
                             </table>

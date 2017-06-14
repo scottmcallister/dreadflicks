@@ -17,6 +17,10 @@
                     return data;
                 }
             },
+            'current': {
+                method: 'GET',
+                login: 'current',
+            },
             'save': { method:'POST' },
             'update': { method:'PUT' },
             'delete':{ method:'DELETE'}

@@ -2,6 +2,7 @@ package com.mrscottmcallister.dreadflicks.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.mrscottmcallister.dreadflicks.domain.MovieList;
+import com.mrscottmcallister.dreadflicks.repository.MovieListRepository;
 import com.mrscottmcallister.dreadflicks.service.MovieListService;
 import com.mrscottmcallister.dreadflicks.web.rest.util.HeaderUtil;
 import com.mrscottmcallister.dreadflicks.web.rest.util.PaginationUtil;
