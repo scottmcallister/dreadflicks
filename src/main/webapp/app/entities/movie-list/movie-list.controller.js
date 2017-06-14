@@ -5,10 +5,19 @@
         .module('dreadflicksApp')
         .controller('MovieListController', MovieListController);
 
-    MovieListController.$inject = ['$state', 'MovieList', 'MovieListSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    MovieListController.$inject = [
+        '$state',
+        'MovieList',
+        'MovieListSearch',
+        'ParseLinks',
+        'AlertService',
+        'paginationConstants',
+        'pagingParams',
+        'Principal'
+    ];
 
-    function MovieListController($state, MovieList, MovieListSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
-
+    function MovieListController($state, MovieList, MovieListSearch, ParseLinks, AlertService,
+        paginationConstants, pagingParams, Principal) {
         var vm = this;
 
         vm.loadPage = loadPage;
@@ -21,24 +30,19 @@
         vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
+        vm.account = null;
 
-        loadAll();
+        Principal.identity().then(function(account) {
+            vm.account = account;
+            loadAll();
+        });
 
         function loadAll () {
-            if (pagingParams.search) {
-                MovieListSearch.query({
-                    query: pagingParams.search,
-                    page: pagingParams.page - 1,
-                    size: vm.itemsPerPage,
-                    sort: sort()
-                }, onSuccess, onError);
-            } else {
-                MovieList.query({
-                    page: pagingParams.page - 1,
-                    size: vm.itemsPerPage,
-                    sort: sort()
-                }, onSuccess, onError);
-            }
+            MovieList.query({
+                page: pagingParams.page - 1,
+                size: vm.itemsPerPage,
+                sort: sort()
+            }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {

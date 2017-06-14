@@ -55,8 +55,8 @@ public class MovieListServiceImpl implements MovieListService{
     @Override
     @Transactional(readOnly = true)
     public Page<MovieList> findAll(Pageable pageable) {
-        log.debug("Request to get all MovieLists");
-        return movieListRepository.findAll(pageable);
+        log.debug("Request to get all MovieLists (test)");
+        return movieListRepository.findByUserIsCurrentUser(pageable);
     }
 
     /**

@@ -5,9 +5,9 @@
         .module('dreadflicksApp')
         .controller('MovieListDialogController', MovieListDialogController);
 
-    MovieListDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'MovieList', 'User', 'Movie'];
+    MovieListDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'MovieList', 'User', 'Movie', 'Principal'];
 
-    function MovieListDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, MovieList, User, Movie) {
+    function MovieListDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, MovieList, User, Movie, Principal) {
         var vm = this;
 
         vm.movieList = entity;
