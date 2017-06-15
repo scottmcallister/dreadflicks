@@ -19,7 +19,7 @@
         vm.clear = clear;
         vm.search = search;
         vm.loadAll = loadAll;
-        vm.searchQuery = "*";
+        vm.searchQuery = '*';
         vm.currentSearch = pagingParams.search;
         vm.criticMax = 99;
         vm.criticMin = 0;
@@ -42,6 +42,7 @@
                 } else {
                     vm.imdbMax = highValue;
                 }
+                resetPagination();
                 loadAll();
             }
         };
@@ -55,6 +56,7 @@
                 } else {
                     vm.criticMax = highValue;
                 }
+                resetPagination();
                 loadAll();
             }
         };
@@ -68,6 +70,7 @@
                 } else {
                     vm.userMax = highValue;
                 }
+                resetPagination();
                 loadAll();
             }
         };
@@ -81,39 +84,40 @@
                 } else {
                     vm.yearsMax = highValue;
                 }
+                resetPagination();
                 loadAll();
             }
         };
         vm.doSearch = function() {
-            if (vm.inputText === "") {
-                vm.searchQuery = "*";
+            if (vm.inputText === '') {
+                vm.searchQuery = '*';
             } else {
                 vm.searchQuery = vm.inputText;
             }
+            resetPagination();
             loadAll();
-            vm.inputText = "";
         };
 
         vm.sortList = [
             {
-                value: "title",
-                name: "Title"
+                value: 'title',
+                name: 'Title'
             },
             {
-                value: "criticScore",
-                name: "Critic Score"
+                value: 'criticScore',
+                name: 'Critic Score'
             },
             {
-                value: "userScore",
-                name: "User Score"
+                value: 'userScore',
+                name: 'User Score'
             },
             {
-                value: "year",
-                name: "Year"
+                value: 'year',
+                name: 'Year'
             },
             {
-                value: "imdbRating",
-                name: "IMDB Rating",
+                value: 'imdbRating',
+                name: 'IMDB Rating',
             },
         ];
 
@@ -150,9 +154,6 @@
             'zombie'
         ];
         vm.selectedTypes = [];
-        vm.checkType = function(type) {
-            alert(type);
-        };
 
         loadAll();
 
@@ -191,29 +192,18 @@
             }
         }
 
+        function resetPagination() {
+            pagingParams.page = 1;
+        }
+
         function loadPage(page) {
             vm.page = page;
             vm.transition();
         }
 
         function transition() {
-            $state.transitionTo($state.$current, {
-                page: vm.page,
-                sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
-                search: vm.currentSearch
-            });
-        }
-
-        function search(searchQuery) {
-            if (!searchQuery){
-                return vm.clear();
-            }
-            vm.links = null;
-            vm.page = 1;
-            vm.predicate = '_score';
-            vm.reverse = false;
-            vm.currentSearch = searchQuery;
-            vm.transition();
+            pagingParams.page = vm.page;
+            loadAll();
         }
 
         function clear() {
