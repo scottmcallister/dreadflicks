@@ -77,8 +77,8 @@
     </div>
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3">
-            <div class="search-pagination">
-                <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+            <div class="search-pagination pull-right">
+                <ul uib-pagination total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()" boundary-link-numbers="true" rotate="false"></ul>
             </div>
         </div>
     </div>
