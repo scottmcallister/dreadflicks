@@ -206,6 +206,18 @@
             loadAll();
         }
 
+        function search(searchQuery) {
+            // if (!searchQuery){
+            //     return vm.clear();
+            // }
+            vm.links = null;
+            vm.page = 1;
+            vm.predicate = '_score';
+            vm.reverse = false;
+            vm.currentSearch = searchQuery;
+            vm.transition();
+        }
+
         function clear() {
             vm.links = null;
             vm.page = 1;
