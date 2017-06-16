@@ -1,5 +1,7 @@
 package com.mrscottmcallister.dreadflicks.service.impl;
 
+import com.mrscottmcallister.dreadflicks.domain.Movie;
+import com.mrscottmcallister.dreadflicks.repository.search.MovieSearchRepository;
 import com.mrscottmcallister.dreadflicks.service.MovieListService;
 import com.mrscottmcallister.dreadflicks.domain.MovieList;
 import com.mrscottmcallister.dreadflicks.repository.MovieListRepository;
@@ -24,12 +26,15 @@ public class MovieListServiceImpl implements MovieListService{
     private final Logger log = LoggerFactory.getLogger(MovieListServiceImpl.class);
 
     private final MovieListRepository movieListRepository;
-
     private final MovieListSearchRepository movieListSearchRepository;
+    private final MovieSearchRepository movieSearchRepository;
 
-    public MovieListServiceImpl(MovieListRepository movieListRepository, MovieListSearchRepository movieListSearchRepository) {
+    public MovieListServiceImpl(MovieListRepository movieListRepository,
+                                MovieListSearchRepository movieListSearchRepository,
+                                MovieSearchRepository movieSearchRepository) {
         this.movieListRepository = movieListRepository;
         this.movieListSearchRepository = movieListSearchRepository;
+        this.movieSearchRepository = movieSearchRepository;
     }
 
     /**
@@ -82,6 +87,20 @@ public class MovieListServiceImpl implements MovieListService{
         log.debug("Request to delete MovieList : {}", id);
         movieListRepository.delete(id);
         movieListSearchRepository.delete(id);
+    }
+
+    /**
+     *  Add a movie to the list
+     *
+     * @param listId id of the movie list
+     * @param movieId id of the movie to add
+     * @return
+     */
+    public void addMovie(Long listId, Long movieId) {
+        log.debug("Request to add movie {} to list {}", movieId, listId);
+        MovieList list = movieListRepository.findOneWithEagerRelationships(listId);
+        Movie movie = movieSearchRepository.findOne(movieId);
+        list.addMovie(movie);
     }
 
     /**

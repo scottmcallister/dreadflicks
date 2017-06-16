@@ -129,6 +129,23 @@ public class MovieListResource {
     }
 
     /**
+     * PUT /movie-list/:listId/movie/:movieId : add movie with "movieId" to list with "listId"
+     *
+     * @param listId
+     * @param movieId
+     * @return
+     */
+    @PutMapping("/movie-list/{listId}/movie/{movieId}")
+    @Timed
+    public ResponseEntity<Void> addMovieToList(@PathVariable Long listId,
+                                               @PathVariable Long movieId) {
+        log.debug("REST request to add movie {} to list {}", movieId, listId);
+        movieListService.addMovie(listId, movieId);
+        String responseMessage = "add movie " + movieId + " to list " + listId;
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, responseMessage)).build();
+    }
+
+    /**
      * SEARCH  /_search/movie-lists?query=:query : search for the movieList corresponding
      * to the query.
      *
