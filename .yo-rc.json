@@ -19,7 +19,7 @@
     "messageBroker": false,
     "serviceDiscoveryType": false,
     "buildTool": "gradle",
-    "enableSocialSignIn": true,
+    "enableSocialSignIn": false,
     "rememberMeKey": "a35a2354a0ed1ba0637ba640a0a605c9edba1dad",
     "clientFramework": "angular1",
     "useSass": false,
