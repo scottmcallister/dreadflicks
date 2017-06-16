@@ -13,7 +13,7 @@
                 <strong>Failed to sign in!</strong> Please check your credentials and try again.
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-md-offset-3">
             <form class="form" role="form" ng-submit="vm.login($event)">
                 <div class="form-group">
                     <label for="username">Login</label>
@@ -39,13 +39,6 @@
             <div class="alert alert-warning">
                 You don't have an account yet? <a class="alert-link" href="" ng-click="vm.register()">Register a new account</a>
             </div>
-        </div>
-        <div class="col-md-6">
-            <br/>
-            <jh-social ng-provider="google"></jh-social>
-            <jh-social ng-provider="facebook"></jh-social>
-            <jh-social ng-provider="twitter"></jh-social>
-            <!-- jhipster-needle-add-social-button -->
         </div>
     </div>
 </div>
