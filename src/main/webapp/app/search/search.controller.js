@@ -187,13 +187,12 @@
                 AlertService.error(error.data.message);
             });
         vm.addList = function(movieId, listId) {
-            MovieListMovie.add({ 
+            var payload = { 
                 'list': listId,
                 'movie': movieId,
-            }, { 
-                'list': listId,
-                'movie': movieId,
-            } );
+            };
+            MovieListMovie.add({}, payload, function onSuccess(){
+            });
         };
 
         loadAll();
@@ -248,9 +247,6 @@
         }
 
         function search(searchQuery) {
-            // if (!searchQuery){
-            //     return vm.clear();
-            // }
             vm.links = null;
             vm.page = 1;
             vm.predicate = '_score';

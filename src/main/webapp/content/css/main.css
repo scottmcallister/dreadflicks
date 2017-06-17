@@ -502,3 +502,11 @@ h3 {
 .lists-content {
     padding-top: 20px;
 }
+
+.floating-footer {
+    width: 70%;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0px;
+}

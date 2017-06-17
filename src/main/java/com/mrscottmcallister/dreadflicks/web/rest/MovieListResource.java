@@ -141,8 +141,8 @@ public class MovieListResource {
                                                @PathVariable Long movieId) {
         log.debug("REST request to add movie {} to list {}", movieId, listId);
         movieListService.addMovie(listId, movieId);
-        String responseMessage = "add movie " + movieId + " to list " + listId;
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, responseMessage)).build();
+        String responseMessage = "Movie added to list";
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert(responseMessage, ENTITY_NAME)).build();
     }
 
     /**
