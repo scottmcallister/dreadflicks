@@ -11,7 +11,10 @@
 
         return $resource(resourceUrl, 
             { list: '@list', movie: '@movie' }, 
-            { 'add': { method:'PUT' } }
+            { 
+                'add': { method:'PUT' },
+                'remove': { method: 'DELETE' }
+            }
         );
     }
 })();

@@ -46,6 +46,7 @@ public class CacheConfiguration {
             cm.createCache(com.mrscottmcallister.dreadflicks.domain.Movie.class.getName(), jcacheConfiguration);
             cm.createCache(com.mrscottmcallister.dreadflicks.domain.MovieList.class.getName(), jcacheConfiguration);
             cm.createCache(com.mrscottmcallister.dreadflicks.domain.MovieList.class.getName() + ".movies", jcacheConfiguration);
+            cm.createCache(com.mrscottmcallister.dreadflicks.domain.Movie.class.getName() + ".movieLists", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -84,13 +84,13 @@ public class MovieList implements Serializable {
 
     public MovieList addMovie(Movie movie) {
         this.movies.add(movie);
-        // movie.getMovieLists().add(this);
+        movie.getMovieLists().add(this);
         return this;
     }
 
     public MovieList removeMovie(Movie movie) {
         this.movies.remove(movie);
-        // movie.getMovieLists().remove(this);
+        movie.getMovieLists().remove(this);
         return this;
     }
 

@@ -191,8 +191,7 @@
                 'list': listId,
                 'movie': movieId,
             };
-            MovieListMovie.add({}, payload, function onSuccess(){
-            });
+            MovieListMovie.add(payload, payload);
         };
 
         loadAll();

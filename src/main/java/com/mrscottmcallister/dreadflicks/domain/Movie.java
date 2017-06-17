@@ -6,7 +6,9 @@ import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Movie.
@@ -56,6 +58,13 @@ public class Movie implements Serializable {
 
     @Column(name = "image")
     private String image;
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "movie_list_movie",
+        joinColumns = @JoinColumn(name="movies_id", referencedColumnName="id"),
+        inverseJoinColumns = @JoinColumn(name="movie_lists_id", referencedColumnName="id"))
+    private Set<MovieList> movieLists = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -201,6 +210,10 @@ public class Movie implements Serializable {
 
     public void setImdbKeywords(String imdbKeywords) {
         this.imdbKeywords = imdbKeywords;
+    }
+
+    public Set<MovieList> getMovieLists() {
+        return movieLists;
     }
 
     @Override

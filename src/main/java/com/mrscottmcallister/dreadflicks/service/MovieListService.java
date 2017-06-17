@@ -50,6 +50,15 @@ public interface MovieListService {
     void addMovie(Long listId, Long movieId);
 
     /**
+     *  Remove a movie from the list
+     *
+     * @param listId id of the movie list
+     * @param movieId id of the movie to add
+     * @return
+     */
+    void removeMovie(Long listId, Long movieId);
+
+    /**
      * Search for the movieList corresponding to the query.
      *
      *  @param query the query of the search

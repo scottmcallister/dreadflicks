@@ -2,68 +2,59 @@
 <div>
     <h2 class="text-center">{{vm.movieList.name}}</h2>
     <hr>
-    <div ng-repeat="movie in vm.movieList.movies track by movie.id" class="col-md-4 col-sm-6">
-        <div class="thumbnail-wrapper">
-            <div class="thumbnail">
-                <div class="movie-poster-wrapper">
-                    <img class="card-img-top" ng-src="{{movie.image}}"
-                            alt="{{movie.title}}" onerror="this.src='/content/images/image-404-alt.png'">
-                </div>
-                <div class="caption">
-                    <h3 class="card-title">{{movie.title}} ({{movie.year}})</h3>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>IMDB Rating:</td>
-                                <td>{{movie.imdbRating.toFixed(1)}}</td>
-                            </tr>
-                            <tr>
-                                <td>RT Critic Score:</td>
-                                <td>{{movie.criticScore || 0}}{{movie.criticScore >= 0 ? '%' : 'NA'}}</td>
-                            </tr>
-                            <tr>
-                                <td>RT User Score:</td>
-                                <td>{{movie.userScore || 0}}{{movie.userScore >= 0 ? '%' : 'NA'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <div class="row">
+        <div class="text-center" style="margin-bottom: 15px;">
+
+            <button type="button" ui-sref="movie-list-detail.edit({id:vm.movieList.id})" class="btn btn-primary">
+                <span class="glyphicon glyphicon-pencil"></span>
+                <span class="hidden-sm-down"> Rename</span>
+            </button>
+
+            <button type="submit"
+                    ui-sref="movie-list-detail.delete({id:vm.movieList.id})"
+                    class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove-circle"></span>
+                <span class="hidden-sm-down"> Delete List</span>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div ng-repeat="movie in vm.movieList.movies track by movie.id" class="col-md-4 col-sm-6">
+            <div class="thumbnail-wrapper">
+                <div class="thumbnail">
+                    <div class="movie-poster-wrapper">
+                        <img class="card-img-top" ng-src="{{movie.image}}"
+                                alt="{{movie.title}}" onerror="this.src='/content/images/image-404-alt.png'">
+                    </div>
+                    <div class="caption">
+                        <h3 class="card-title">{{movie.title}} ({{movie.year}})</h3>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>IMDB Rating:</td>
+                                    <td>{{movie.imdbRating.toFixed(1)}}</td>
+                                </tr>
+                                <tr>
+                                    <td>RT Critic Score:</td>
+                                    <td>{{movie.criticScore || 0}}{{movie.criticScore >= 0 ? '%' : 'NA'}}</td>
+                                </tr>
+                                <tr>
+                                    <td>RT User Score:</td>
+                                    <td>{{movie.userScore || 0}}{{movie.userScore >= 0 ? '%' : 'NA'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit"
+                                ng-click="vm.removeMovie(movie.id, vm.movieList.id)"
+                                class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                            <span class="hidden-sm-down"> Remove</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--<jhi-alert-error></jhi-alert-error>
-    <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Name</span></dt>
-        <dd>
-            <span>{{vm.movieList.name}}</span>
-        </dd>
-        <dt><span>User</span></dt>
-        <dd>
-            {{vm.movieList.user.login}}
-        </dd>
-        <dt><span>Movie</span></dt>
-        <dd>
-            <span ng-repeat="movie in vm.movieList.movies">
-                <a ui-sref="movie-detail({id: movie.id})">{{movie.title}}</a>{{$last ? '' : ', '}}
-            </span>
-        </dd>
-    </dl>-->
-
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
-    </button>
-
-    <button type="button" ui-sref="movie-list-detail.edit({id:vm.movieList.id})" class="btn btn-primary">
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down"> Rename</span>
-    </button>
-
-    <button type="submit"
-            ui-sref="movie-list-detail.delete({id:vm.movieList.id})"
-            class="btn btn-danger">
-        <span class="glyphicon glyphicon-remove-circle"></span>
-        <span class="hidden-sm-down"> Delete</span>
-    </button>
 </div>

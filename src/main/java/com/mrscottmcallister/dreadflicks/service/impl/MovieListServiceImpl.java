@@ -104,6 +104,20 @@ public class MovieListServiceImpl implements MovieListService{
     }
 
     /**
+     *  Remove a movie from the list
+     *
+     * @param listId id of the movie list
+     * @param movieId id of the movie to add
+     * @return
+     */
+    public void removeMovie(Long listId, Long movieId) {
+        log.debug("Request to add movie {} to list {}", movieId, listId);
+        MovieList list = movieListRepository.findOneWithEagerRelationships(listId);
+        Movie movie = movieSearchRepository.findOne(movieId);
+        list.removeMovie(movie);
+    }
+
+    /**
      * Search for the movieList corresponding to the query.
      *
      *  @param query the query of the search

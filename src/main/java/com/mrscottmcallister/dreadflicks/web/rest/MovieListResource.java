@@ -146,6 +146,23 @@ public class MovieListResource {
     }
 
     /**
+     * DELETE /movie-list/:listId/movie/:movieId : remove movie with "movieId" from list with "listId"
+     *
+     * @param listId
+     * @param movieId
+     * @return
+     */
+    @DeleteMapping("/movie-lists/{listId}/movie/{movieId}")
+    @Timed
+    public ResponseEntity<Void> removeMovieFromList(@PathVariable Long listId,
+                                                    @PathVariable Long movieId) {
+        log.debug("REST request to remove movie {} from list {}", movieId, listId);
+        movieListService.removeMovie(listId, movieId);
+        String responseMessage = "Movie removed from list";
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert(responseMessage, ENTITY_NAME)).build();
+    }
+
+    /**
      * SEARCH  /_search/movie-lists?query=:query : search for the movieList corresponding
      * to the query.
      *
