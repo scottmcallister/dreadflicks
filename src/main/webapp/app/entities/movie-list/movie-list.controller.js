@@ -90,7 +90,7 @@
         function clear() {
             vm.links = null;
             vm.page = 1;
-            vm.predicate = 'id';
+            vm.predicate = 'name';
             vm.reverse = true;
             vm.currentSearch = null;
             vm.transition();

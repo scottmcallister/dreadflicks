@@ -5,9 +5,25 @@
         .module('dreadflicksApp')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$state', 'Movie', 'MovieSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    SearchController.$inject = [
+        '$state',
+        'Movie',
+        'MovieSearch',
+        'MovieList',
+        'ParseLinks',
+        'AlertService',
+        'paginationConstants',
+        'pagingParams'
+    ];
 
-    function SearchController($state, Movie, MovieSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function SearchController($state,
+                              Movie,
+                              MovieSearch,
+                              MovieList,
+                              ParseLinks,
+                              AlertService,
+                              paginationConstants,
+                              pagingParams) {
 
         var vm = this;
 
@@ -154,6 +170,20 @@
             'zombie'
         ];
         vm.selectedTypes = [];
+
+        vm.movieLists = [];
+        MovieList.query(
+            {
+                page: pagingParams.page - 1,
+                size: vm.itemsPerPage,
+                sort: ['name,asc', 'id'],
+            },
+            function(data, headers) {
+                vm.movieLists = data;
+            },
+            function(error) {
+                AlertService.error(error.data.message);
+            });
 
         loadAll();
 
