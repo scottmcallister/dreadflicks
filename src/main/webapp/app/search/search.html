@@ -44,16 +44,16 @@
             </div>
         </div>
         <div class="col-sm-9">
-            <div ng-repeat="movie in vm.movies track by movie.id" class="col-md-4 col-sm-6">
+            <div ng-repeat="movie in vm.movies track by movie.id" class="col-md-4 col-sm-6" ng-init="hideLists = true">
                 <div class="thumbnail-wrapper">
-                    <div class="thumbnail">
+                    <div class="thumbnail" ng-style="thumbnailStyle">
                         <div class="movie-poster-wrapper">
                             <img class="card-img-top" ng-src="{{movie.image}}"
                                  alt="{{movie.title}}" onerror="this.src='/content/images/image-404-alt.png'">
                         </div>
                         <div class="caption">
                             <h3 class="card-title">{{movie.title}} ({{movie.year}})</h3>
-                            <table>
+                            <table style="margin-bottom: 10px;">
                                 <tbody>
                                     <tr>
                                         <td>IMDB Rating:</td>
@@ -69,6 +69,17 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <div class="text-center" style="width:100%;">
+                                <button ng-click="hideLists = !hideLists; thumbnailStyle = hideLists ? {} : {'filter': 'brightness(70%)'}" class="btn btn-default">Add To List</button>
+                                <div style="position:absolute; z-index: 3; top: 50%; left: 50%; transform: translate(-50%, -100%); width: 60%;" ng-hide="hideLists">
+                                    <div ng-repeat="movieList in vm.movieLists" class="text-center">
+                                        <span>
+                                            <button ng-click="loadEmail(user);" class="btn btn-primary" style="width: 100%; margin-bottom: 5px;">{{movieList.name}}</button>
+                                            <br>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

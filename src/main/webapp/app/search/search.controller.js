@@ -184,6 +184,9 @@
             function(error) {
                 AlertService.error(error.data.message);
             });
+        vm.addList = function(movieId) {
+            alert(movieId);
+        };
 
         loadAll();
 
