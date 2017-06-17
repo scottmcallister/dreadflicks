@@ -115,6 +115,7 @@
             resetPagination();
             loadAll();
         };
+        vm.totalItems = -1;
 
         vm.sortList = [
             {
@@ -220,8 +221,9 @@
                 return result;
             }
             function onSuccess(data, headers) {
+                debugger;
                 vm.links = ParseLinks.parse(headers('link'));
-                vm.totalItems = headers('X-Total-Count');
+                vm.totalItems = parseInt(headers('X-Total-Count'));
                 vm.queryCount = vm.totalItems;
                 vm.movies = data;
                 vm.page = pagingParams.page;

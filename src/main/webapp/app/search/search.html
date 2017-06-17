@@ -44,6 +44,10 @@
             </div>
         </div>
         <div class="col-sm-9">
+            <div ng-hide="vm.totalItems !== 0" style="padding-top: 30px;" class="text-center">
+                <h3>No results!</h3>
+                <p>Try changing your filters or entering different keywords in the search bar</p>
+            </div>
             <div ng-repeat="movie in vm.movies track by movie.id" class="col-md-4 col-sm-6" ng-init="hideLists = true">
                 <div class="thumbnail-wrapper">
                     <div class="thumbnail" ng-style="thumbnailStyle">
