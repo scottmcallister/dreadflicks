@@ -243,6 +243,7 @@
         function transition() {
             pagingParams.page = vm.page;
             loadAll();
+            scroll(0,0);
         }
 
         function search(searchQuery) {
