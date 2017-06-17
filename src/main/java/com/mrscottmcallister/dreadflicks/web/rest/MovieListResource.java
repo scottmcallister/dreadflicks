@@ -135,7 +135,7 @@ public class MovieListResource {
      * @param movieId
      * @return
      */
-    @PutMapping("/movie-list/{listId}/movie/{movieId}")
+    @PutMapping("/movie-lists/{listId}/movie/{movieId}")
     @Timed
     public ResponseEntity<Void> addMovieToList(@PathVariable Long listId,
                                                @PathVariable Long movieId) {

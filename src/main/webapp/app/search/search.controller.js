@@ -10,6 +10,7 @@
         'Movie',
         'MovieSearch',
         'MovieList',
+        'MovieListMovie',
         'ParseLinks',
         'AlertService',
         'paginationConstants',
@@ -20,6 +21,7 @@
                               Movie,
                               MovieSearch,
                               MovieList,
+                              MovieListMovie,
                               ParseLinks,
                               AlertService,
                               paginationConstants,
@@ -184,8 +186,14 @@
             function(error) {
                 AlertService.error(error.data.message);
             });
-        vm.addList = function(movieId) {
-            alert(movieId);
+        vm.addList = function(movieId, listId) {
+            MovieListMovie.add({ 
+                'list': listId,
+                'movie': movieId,
+            }, { 
+                'list': listId,
+                'movie': movieId,
+            } );
         };
 
         loadAll();

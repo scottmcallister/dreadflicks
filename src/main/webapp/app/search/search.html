@@ -74,7 +74,7 @@
                                 <div style="position:absolute; z-index: 3; top: 50%; left: 50%; transform: translate(-50%, -100%); width: 60%;" ng-hide="hideLists">
                                     <div ng-repeat="movieList in vm.movieLists" class="text-center">
                                         <span>
-                                            <button ng-click="loadEmail(user);" class="btn btn-primary" style="width: 100%; margin-bottom: 5px;">{{movieList.name}}</button>
+                                            <button ng-click="vm.addList(movie.id, movieList.id)" class="btn btn-primary" style="width: 100%; margin-bottom: 5px;">{{movieList.name}}</button>
                                             <br>
                                         </span>
                                     </div>
