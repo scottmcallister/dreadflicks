@@ -7,7 +7,7 @@
                 {{movieList.name}}
             </button>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" ng-hide="vm.atLimit">
             <button class="list-link new-list" ui-sref="movie-list.new" >
                 <span class="glyphicon glyphicon-plus"></span> Create New List
             </button>
@@ -58,5 +58,4 @@
             </tbody>
         </table>
     </div> -->
-    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
 </div>

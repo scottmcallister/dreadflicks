@@ -31,6 +31,7 @@
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
         vm.account = null;
+        vm.atLimit = false;
 
         Principal.identity().then(function(account) {
             vm.account = account;
@@ -53,6 +54,7 @@
             function onSuccess(data, headers) {
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
+                vm.atLimit = vm.totalItems >= 6;
                 vm.queryCount = vm.totalItems;
                 vm.movieLists = data;
                 vm.page = pagingParams.page;
