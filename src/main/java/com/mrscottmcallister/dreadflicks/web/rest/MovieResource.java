@@ -113,10 +113,22 @@ public class MovieResource {
             page = movieSearchRepository.search(
                 boolQuery()
                     .must(queryStringQuery(URLDecoder.decode(query, utf8)))
-                    .must(rangeQuery("criticScore").lte(criticMax).gte(criticMin))
-                    .must(rangeQuery("userScore").lte(userMax).gte(userMin))
                     .must(rangeQuery("year").lte(yearMax).gte(yearMin))
-                    .must(rangeQuery("imdbRating").lte(imdbMax).gte(imdbMin))
+                    .must(
+                        boolQuery()
+                            .should(rangeQuery("criticScore").lte(criticMax).gte(criticMin))
+                            .should(boolQuery().mustNot(existsQuery("criticScore")))
+                            .minimumNumberShouldMatch(1))
+                    .must(
+                        boolQuery()
+                            .should(rangeQuery("userScore").lte(criticMax).gte(criticMin))
+                            .should(boolQuery().mustNot(existsQuery("userScore")))
+                            .minimumNumberShouldMatch(1))
+                    .must(
+                        boolQuery()
+                            .should(rangeQuery("imdbRating").lte(criticMax).gte(criticMin))
+                            .should(boolQuery().mustNot(existsQuery("imdbRating")))
+                            .minimumNumberShouldMatch(1))
                 , pageable);
         } else {
             try{
