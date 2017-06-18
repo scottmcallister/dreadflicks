@@ -142,7 +142,7 @@ public class MovieListResourceIntTest {
         // Initialize the database
         movieListRepository.saveAndFlush(movieList);
 
-        // Get all the movieListList
+        // Get all the movieLists
         restMovieListMockMvc.perform(get("/api/movie-lists?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
