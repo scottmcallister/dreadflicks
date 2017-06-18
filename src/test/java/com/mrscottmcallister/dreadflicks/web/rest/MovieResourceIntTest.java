@@ -183,30 +183,6 @@ public class MovieResourceIntTest {
 
     @Test
     @Transactional
-    public void searchMovie() throws Exception {
-        // Initialize the database
-        movieRepository.saveAndFlush(movie);
-        movieSearchRepository.save(movie);
-
-        // Search the movie
-        restMovieMockMvc.perform(get("/api/_search/movies?query=id:" + movie.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(movie.getId().intValue())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE.toString())))
-            .andExpect(jsonPath("$.[*].director").value(hasItem(DEFAULT_DIRECTOR.toString())))
-            .andExpect(jsonPath("$.[*].year").value(hasItem(DEFAULT_YEAR)))
-            .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())))
-            .andExpect(jsonPath("$.[*].criticScore").value(hasItem(DEFAULT_CRITIC_SCORE)))
-            .andExpect(jsonPath("$.[*].userScore").value(hasItem(DEFAULT_USER_SCORE)))
-            .andExpect(jsonPath("$.[*].poster").value(hasItem(DEFAULT_POSTER.toString())))
-            .andExpect(jsonPath("$.[*].rtUrl").value(hasItem(DEFAULT_RT_URL.toString())))
-            .andExpect(jsonPath("$.[*].imdbRating").value(hasItem(DEFAULT_IMDB_RATING.doubleValue())))
-            .andExpect(jsonPath("$.[*].imdbKeywords").value(hasItem(DEFAULT_IMDB_KEYWORDS.toString())));
-    }
-
-    @Test
-    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Movie.class);
     }

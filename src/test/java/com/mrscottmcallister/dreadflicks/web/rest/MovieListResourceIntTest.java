@@ -138,20 +138,6 @@ public class MovieListResourceIntTest {
 
     @Test
     @Transactional
-    public void getAllMovieLists() throws Exception {
-        // Initialize the database
-        movieListRepository.saveAndFlush(movieList);
-
-        // Get all the movieLists
-        restMovieListMockMvc.perform(get("/api/movie-lists?sort=id,desc"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(movieList.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
-    }
-
-    @Test
-    @Transactional
     public void getMovieList() throws Exception {
         // Initialize the database
         movieListRepository.saveAndFlush(movieList);
