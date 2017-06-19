@@ -191,6 +191,7 @@ dependencies {
     }
     compile "io.springfox:springfox-bean-validators:${springfox_version}"
     compile "org.postgresql:postgresql"
+    compile "com.github.vanroy:spring-boot-starter-data-jest:2.2.0.RELEASE"
     compile "org.mapstruct:mapstruct-jdk8:${mapstruct_version}"
     compile "org.apache.httpcomponents:httpclient"
     compile "org.springframework.social:spring-social-security"

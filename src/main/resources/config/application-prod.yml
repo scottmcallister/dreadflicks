@@ -36,8 +36,15 @@ spring:
             hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.NoDefaultJCacheRegionFactory
     data:
         elasticsearch:
-            cluster-name:
-            cluster-nodes: localhost:9300
+             properties:
+                path:
+                    home: target/elasticsearch
+                transport:
+                    tcp:
+                        connect_timeout: 120s
+        jest:
+            readTimeout: 10000
+            uri: ${BONSAI_URL}
     mail:
         host: localhost
         port: 25
