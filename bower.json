@@ -25,7 +25,8 @@
     "swagger-ui": "2.1.5",
     "bootswatch": "^3.3.7",
     "angularjs-slider": "^6.1.2",
-    "checklist-model": "^0.11.0"
+    "checklist-model": "^0.11.0",
+    "bootswatch-dist": "3.3.6-slate"
   },
   "devDependencies": {
     "angular-mocks": "1.5.8"
