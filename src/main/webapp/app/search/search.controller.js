@@ -13,6 +13,7 @@
         'MovieListMovie',
         'ParseLinks',
         'AlertService',
+        'Principal',
         'paginationConstants',
         'pagingParams'
     ];
@@ -24,11 +25,13 @@
                               MovieListMovie,
                               ParseLinks,
                               AlertService,
+                              Principal,
                               paginationConstants,
                               pagingParams) {
 
         var vm = this;
 
+        vm.isAuthenticated = Principal.isAuthenticated;
         vm.loadPage = loadPage;
         vm.predicate = 'criticScore';
         vm.direction = 'desc';
@@ -175,8 +178,8 @@
         vm.selectedTypes = [];
 
         vm.movieLists = [];
-        MovieList.query(
-            {
+        if(vm.isAuthenticated()){
+            MovieList.query({
                 page: pagingParams.page - 1,
                 size: vm.itemsPerPage,
                 sort: ['name,asc', 'id'],
@@ -187,6 +190,7 @@
             function(error) {
                 AlertService.error(error.data.message);
             });
+        }
         vm.addList = function(movieId, listId) {
             var payload = { 
                 'list': listId,

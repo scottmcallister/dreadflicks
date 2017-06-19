@@ -43,7 +43,7 @@
                 </label>
             </div>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-9" ng-switch="vm.isAuthenticated()">
             <div ng-hide="vm.totalItems !== 0" style="padding-top: 30px;" class="text-center">
                 <h3>No results!</h3>
                 <p>Try changing your filters or entering different keywords in the search bar</p>
@@ -73,7 +73,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="text-center" style="width:100%;">
+                            <div class="text-center" style="width:100%;" ng-switch-when="true">
                                 <button ng-click="hideLists = !hideLists; thumbnailStyle = hideLists ? {} : {'filter': 'brightness(70%)'}" class="btn btn-default">Add To List</button>
                                 <div style="position:absolute; z-index: 3; top: 50%; left: 50%; transform: translate(-50%, -100%); width: 60%;" ng-hide="hideLists">
                                     <div ng-repeat="movieList in vm.movieLists" class="text-center">
