@@ -44,7 +44,6 @@ gulp.task('images', function () {
     return gulp.src(config.app + 'content/images/**')
         .pipe(plumber({errorHandler: handleErrors}))
         .pipe(changed(config.dist + 'content/images'))
-        .pipe(rev())
         .pipe(gulp.dest(config.dist + 'content/images'))
         .pipe(rev.manifest(config.revManifest, {
             base: config.dist,
