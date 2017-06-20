@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     rev = require('gulp-rev'),
     templateCache = require('gulp-angular-templatecache'),
     htmlmin = require('gulp-htmlmin'),
+    imagemin = require('gulp-imagemin'),
     ngConstant = require('gulp-ng-constant'),
     rename = require('gulp-rename'),
     eslint = require('gulp-eslint'),
@@ -52,6 +53,21 @@ gulp.task('images', function () {
         .pipe(browserSync.reload({stream: true}));
 });
 
+gulp.task('404-image', function() {
+    return gulp.src(config.app + 'content/images/image-404-alt.png')
+        .pipe(plumber({errorHandler: handleErrors}))
+        .pipe(changed(config.dist + 'content/images'))
+        .pipe(imagemin({optimizationLevel: 5, progressive: true, interlaced: true}))
+        .pipe(rev())
+        .pipe(gulp.dest(config.dist + 'content/images'))
+        .pipe(rev.manifest(config.revManifest, {
+            base: config.dist,
+            merge: true
+        }))
+        .pipe(gulp.dest(config.dist))
+        .pipe(browserSync.reload({stream: true}));
+});
+
 
 gulp.task('styles', [], function () {
     return gulp.src(config.app + 'content/css')
@@ -72,7 +88,7 @@ gulp.task('inject:test', inject.test);
 
 gulp.task('inject:troubleshoot', inject.troubleshoot);
 
-gulp.task('assets:prod', ['images', 'styles', 'html', 'copy:swagger', 'copy:images'], build);
+gulp.task('assets:prod', ['images', '404-image', 'styles', 'html', 'copy:swagger', 'copy:images'], build);
 
 gulp.task('html', function () {
     return gulp.src(config.app + 'app/**/*.html')
