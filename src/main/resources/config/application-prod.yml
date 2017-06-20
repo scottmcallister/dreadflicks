@@ -55,7 +55,7 @@ spring:
         auth: true
         from: dread.flicks.app@gmail.com
     thymeleaf:
-        cache: true
+        cache: false
 
 liquibase:
     contexts: prod
@@ -105,7 +105,7 @@ jhipster:
             key: a35a2354a0ed1ba0637ba640a0a605c9edba1dad
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: dreadflicks@localhost
-        base-url: http://my-server-url-to-change # Modify according to your server's URL
+        base-url: http://dreadflicks.herokuapp.com # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         graphite:
