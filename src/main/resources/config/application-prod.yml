@@ -46,12 +46,20 @@ spring:
             readTimeout: 10000
             uri: ${BONSAI_URL}
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.gmail.com
+        port: 587
+        username: ${GMAIL_ADDRESS}
+        password: ${GMAIL_PASSWORD}           
+        protocol: smtp
+        tls: true
+        properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp.gmail.com
+    messages:
+        cache-seconds: 1
     thymeleaf:
-        cache: true
+        cache: false
 
 liquibase:
     contexts: prod
