@@ -62,7 +62,8 @@ public class UserService {
                 // activate given user for the registration key.
                 user.setActivated(true);
                 user.setActivationKey(null);
-                userSearchRepository.save(user);
+                userRepository.save(user);
+                // userSearchRepository.save(user);
                 log.debug("Activated user: {}", user);
                 return user;
             });

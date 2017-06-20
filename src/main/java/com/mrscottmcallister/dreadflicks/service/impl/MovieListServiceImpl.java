@@ -26,14 +26,14 @@ public class MovieListServiceImpl implements MovieListService{
     private final Logger log = LoggerFactory.getLogger(MovieListServiceImpl.class);
 
     private final MovieListRepository movieListRepository;
-    private final MovieListSearchRepository movieListSearchRepository;
+    // private final MovieListSearchRepository movieListSearchRepository;
     private final MovieSearchRepository movieSearchRepository;
 
     public MovieListServiceImpl(MovieListRepository movieListRepository,
                                 MovieListSearchRepository movieListSearchRepository,
                                 MovieSearchRepository movieSearchRepository) {
         this.movieListRepository = movieListRepository;
-        this.movieListSearchRepository = movieListSearchRepository;
+        // this.movieListSearchRepository = movieListSearchRepository;
         this.movieSearchRepository = movieSearchRepository;
     }
 
@@ -47,7 +47,7 @@ public class MovieListServiceImpl implements MovieListService{
     public MovieList save(MovieList movieList) {
         log.debug("Request to save MovieList : {}", movieList);
         MovieList result = movieListRepository.save(movieList);
-        movieListSearchRepository.save(result);
+        // movieListSearchRepository.save(result);
         return result;
     }
 
@@ -86,7 +86,7 @@ public class MovieListServiceImpl implements MovieListService{
     public void delete(Long id) {
         log.debug("Request to delete MovieList : {}", id);
         movieListRepository.delete(id);
-        movieListSearchRepository.delete(id);
+        // movieListSearchRepository.delete(id);
     }
 
     /**
@@ -128,7 +128,8 @@ public class MovieListServiceImpl implements MovieListService{
     @Transactional(readOnly = true)
     public Page<MovieList> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of MovieLists for query {}", query);
-        Page<MovieList> result = movieListSearchRepository.search(queryStringQuery(query), pageable);
+        // Page<MovieList> result = movieListSearchRepository.search(queryStringQuery(query), pageable);
+        Page<MovieList> result = null;
         return result;
     }
 }
