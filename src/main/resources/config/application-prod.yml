@@ -46,10 +46,14 @@ spring:
             readTimeout: 10000
             uri: ${BONSAI_URL}
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.sendgrid.net
+        port: 587
+        username: ${SENDGRID_USERNAME}
+        password: ${SENDGRID_PASSWORD}
+        protocol: smtp
+        tls: false
+        auth: true
+        from: dread.flicks.app@gmail.com
     thymeleaf:
         cache: true
 
