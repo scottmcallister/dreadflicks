@@ -53,7 +53,7 @@
                     <div class="thumbnail" ng-style="thumbnailStyle">
                         <div class="movie-poster-wrapper">
                             <img class="card-img-top" ng-src="{{movie.image}}"
-                                 alt="{{movie.title}}" onerror="this.src='/content/images/image-404-alt.png'">
+                                 alt="{{movie.title}}" fallback-src="/content/images/image-404-alt.png">
                         </div>
                         <div class="caption">
                             <h3 class="card-title">{{movie.title}} ({{movie.year}})</h3>

@@ -176,6 +176,7 @@
             'zombie'
         ];
         vm.selectedTypes = [];
+        vm.fallbackImg = "/content/images/image-404-alt.png";
 
         vm.movieLists = [];
         if(vm.isAuthenticated()){
