@@ -417,6 +417,9 @@ Social Buttons
     background: #272B30;
     border-radius: 5px;
     border: 1px solid #0c0d0e;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 30px;
 }
 
 .filter-panel .types label{
@@ -509,4 +512,8 @@ h3 {
     left: 50%;
     transform: translateX(-50%);
     bottom: 0px;
+}
+
+.search-bar {
+    padding-bottom: 30px;
 }

@@ -1,46 +1,50 @@
 <div ng-cloak>
-    <div class="row">
+    <div class="row search-bar">
         <form class="form-group" ng-submit="vm.doSearch()">
-            <div class="col-xs-10 col-md-6 col-md-offset-3">
+            <div class="col-xs-8 col-md-6 col-md-offset-3">
                 <input type="text" ng-model="vm.inputText" class="form-control" placeholder="Search by title or keyword">
             </div>
-            <input type="submit" class="btn btn-default" value="Search">
+            <div class="col-xs-3">
+                <input type="submit" class="btn btn-default" value="Search">
+            </div>
         </form>
     </div>
     <div class="row">
-        <div class="col-sm-3 filter-panel">
-            <h4>Sorting</h4>
-            <select ng-model="vm.predicate" class="form-control" ng-change="vm.doSearch()">
-                        <option ng-repeat="sortOrder in vm.sortList" value="{{sortOrder.value}}">{{sortOrder.name}}</option>
-                        <option value="" disabled selected hidden>Sort Order</option>
-                    </select>
-            <label>
-                <input type="radio" ng-model="vm.direction" value="asc" ng-change="vm.doSearch()"> Ascending
-            </label>
-            <label>
-                <input type="radio" ng-model="vm.direction" value="desc" ng-change="vm.doSearch()"> Descending
-            </label>
-            <h4>Year</h4>
-            <rzslider rz-slider-model="vm.yearMin"
-                      rz-slider-high="vm.yearMax"
-                      rz-slider-options="vm.yearSlider"></rzslider>
-            <h4>IMDB Rating</h4>
-            <rzslider rz-slider-model="vm.imdbMin"
-                      rz-slider-high="vm.imdbMax"
-                      rz-slider-options="vm.imdbSlider"></rzslider>
-            <h4>Rotten Tomatoes Critic</h4>
-            <rzslider rz-slider-model="vm.criticMin"
-                      rz-slider-high="vm.criticMax"
-                      rz-slider-options="vm.criticSlider"></rzslider>
-            <h4>Rotten Tomatoes User</h4>
-            <rzslider rz-slider-model="vm.userMin"
-                      rz-slider-high="vm.userMax"
-                      rz-slider-options="vm.userSlider"></rzslider>
-            <h4>Keywords</h4>
-            <div class="types">
-                <label ng-repeat="type in vm.types">
-                    <input type="checkbox" checklist-change="vm.doSearch()" checklist-model="vm.selectedTypes" checklist-value="type"> {{type}}
+        <div class="col-sm-3">
+            <div class="filter-panel">
+                <h4>Sorting</h4>
+                <select ng-model="vm.predicate" class="form-control" ng-change="vm.doSearch()">
+                            <option ng-repeat="sortOrder in vm.sortList" value="{{sortOrder.value}}">{{sortOrder.name}}</option>
+                            <option value="" disabled selected hidden>Sort Order</option>
+                        </select>
+                <label>
+                    <input type="radio" ng-model="vm.direction" value="asc" ng-change="vm.doSearch()"> Ascending
                 </label>
+                <label>
+                    <input type="radio" ng-model="vm.direction" value="desc" ng-change="vm.doSearch()"> Descending
+                </label>
+                <h4>Year</h4>
+                <rzslider rz-slider-model="vm.yearMin"
+                        rz-slider-high="vm.yearMax"
+                        rz-slider-options="vm.yearSlider"></rzslider>
+                <h4>IMDB Rating</h4>
+                <rzslider rz-slider-model="vm.imdbMin"
+                        rz-slider-high="vm.imdbMax"
+                        rz-slider-options="vm.imdbSlider"></rzslider>
+                <h4>Rotten Tomatoes Critic</h4>
+                <rzslider rz-slider-model="vm.criticMin"
+                        rz-slider-high="vm.criticMax"
+                        rz-slider-options="vm.criticSlider"></rzslider>
+                <h4>Rotten Tomatoes User</h4>
+                <rzslider rz-slider-model="vm.userMin"
+                        rz-slider-high="vm.userMax"
+                        rz-slider-options="vm.userSlider"></rzslider>
+                <h4>Keywords</h4>
+                <div class="types">
+                    <label ng-repeat="type in vm.types">
+                        <input type="checkbox" checklist-change="vm.doSearch()" checklist-model="vm.selectedTypes" checklist-value="type"> {{type}}
+                    </label>
+                </div>
             </div>
         </div>
         <div class="col-sm-9" ng-switch="vm.isAuthenticated()">
