@@ -13,7 +13,39 @@
         <div class="hidden-md hidden-lg hidden-xl">
             <uib-accordion>
                 <uib-accordion-group class="panel-default" heading="Filters">
-                    <p>test test test</p>
+                    <h4>Sorting</h4>
+                    <select ng-model="vm.predicate" class="form-control" ng-change="vm.doSearch()">
+                                <option ng-repeat="sortOrder in vm.sortList" value="{{sortOrder.value}}">{{sortOrder.name}}</option>
+                                <option value="" disabled selected hidden>Sort Order</option>
+                            </select>
+                    <label>
+                        <input type="radio" ng-model="vm.direction" value="asc" ng-change="vm.doSearch()"> Ascending
+                    </label>
+                    <label>
+                        <input type="radio" ng-model="vm.direction" value="desc" ng-change="vm.doSearch()"> Descending
+                    </label>
+                    <h4>Year</h4>
+                    <rzslider rz-slider-model="vm.yearMin"
+                            rz-slider-high="vm.yearMax"
+                            rz-slider-options="vm.yearSlider"></rzslider>
+                    <h4>IMDB Rating</h4>
+                    <rzslider rz-slider-model="vm.imdbMin"
+                            rz-slider-high="vm.imdbMax"
+                            rz-slider-options="vm.imdbSlider"></rzslider>
+                    <h4>Rotten Tomatoes Critic</h4>
+                    <rzslider rz-slider-model="vm.criticMin"
+                            rz-slider-high="vm.criticMax"
+                            rz-slider-options="vm.criticSlider"></rzslider>
+                    <h4>Rotten Tomatoes User</h4>
+                    <rzslider rz-slider-model="vm.userMin"
+                            rz-slider-high="vm.userMax"
+                            rz-slider-options="vm.userSlider"></rzslider>
+                    <h4>Keywords</h4>
+                    <div class="types">
+                        <label ng-repeat="type in vm.types">
+                            <input type="checkbox" checklist-change="vm.doSearch()" checklist-model="vm.selectedTypes" checklist-value="type"> {{type}}
+                        </label>
+                    </div>
                 </uib-accordion-group>
             </uib-accordion>
         </div>
