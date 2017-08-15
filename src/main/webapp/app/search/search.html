@@ -10,7 +10,14 @@
         </form>
     </div>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="hidden-md hidden-lg hidden-xl">
+            <uib-accordion>
+                <uib-accordion-group class="panel-default" heading="Filters">
+                    <p>test test test</p>
+                </uib-accordion-group>
+            </uib-accordion>
+        </div>
+        <div class="col-sm-3 hidden-sm hidden-xs">
             <div class="filter-panel">
                 <h4>Sorting</h4>
                 <select ng-model="vm.predicate" class="form-control" ng-change="vm.doSearch()">
